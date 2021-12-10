@@ -1,0 +1,19 @@
+.HomeContainer{
+    background:rgba(255, 255, 255, 0.5);   
+    width: 80vw;
+    margin: 0 auto;
+    height: auto;
+    padding-top: 20px;
+}
+.Containerbanner{
+    width: 80vw;
+}
+.banner{
+    width: 70vw;
+    height: 40vh;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 250);
+    padding-top: 20px;
+}
+
+

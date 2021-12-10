@@ -1,0 +1,11 @@
+.containerCard{
+    width: 71vw;
+    margin: 0 auto;
+}
+
+.product{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-bottom: 1px solid black;
+}
