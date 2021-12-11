@@ -6,7 +6,7 @@ const CardProduct = () =>{
         <>
         <div>
             <div className="product" id="product">
-            <h3>Product</h3>
+            <h3 style={{color:"#0c6632"}}>Product</h3>
             </div>
             <div className="containerCard  d-flex flex-wrap justify-content-beetwen">
             <div className="mx-2 my-3 " >
@@ -20,7 +20,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -35,7 +35,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -50,7 +50,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -65,7 +65,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -80,7 +80,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -95,7 +95,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -110,7 +110,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>
@@ -125,7 +125,7 @@ const CardProduct = () =>{
                     <Col>Rp53.000/bln</Col>
                 </Row>
                 </Card.Text>
-                <Button variant="primary">More Info</Button>
+                <Button variant="success">More Info</Button>
             </Card.Body>
             </Card>
         </div>

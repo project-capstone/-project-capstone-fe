@@ -1,5 +1,5 @@
 .HomeContainer{
-    background:rgba(255, 255, 255, 0.5);   
+    background:rgba(236, 248, 243, 0.445);   
     width: 80vw;
     margin: 0 auto;
     height: auto;
@@ -12,8 +12,10 @@
     width: 70vw;
     height: 40vh;
     margin: 0 auto;
-    background-color: rgb(255, 255, 250);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1100' height='400' preserveAspectRatio='none' viewBox='0 0 1100 400'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1107%26quot%3b)' fill='none'%3e%3crect width='1100' height='400' x='0' y='0' fill='rgba(248%2c 248%2c 249%2c 1)'%3e%3c/rect%3e%3cpath d='M912.07 339.68 a104.79 104.79 0 1 0 209.58 0 a104.79 104.79 0 1 0 -209.58 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M27.51 97.39 a84.96 84.96 0 1 0 169.92 0 a84.96 84.96 0 1 0 -169.92 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M156.26 126.23 a106.82 106.82 0 1 0 213.64 0 a106.82 106.82 0 1 0 -213.64 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M21.95 43.88 a96.61 96.61 0 1 0 193.22 0 a96.61 96.61 0 1 0 -193.22 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M778.523047439271 453.3335883617399L866.9104021091237 376.49963315657766 790.0764469039615 288.1122784867249 701.6890922341088 364.94623369188713z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M758.3439102378 149.06774323610998L707.2180392010242 52.91396451336253 662.1901315150525 200.19361427288567z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M289.71 268.09 a100.26 100.26 0 1 0 200.52 0 a100.26 100.26 0 1 0 -200.52 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M450.51 144.16 a130.64 130.64 0 1 0 261.28 0 a130.64 130.64 0 1 0 -261.28 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M718.55 107.07 a91.69 91.69 0 1 0 183.38 0 a91.69 91.69 0 1 0 -183.38 0z' fill='rgba(6%2c 244%2c 140%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1107'%3e%3crect width='1100' height='400' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
     padding-top: 20px;
 }
-
+.CardContainer{
+    padding-top: 20px;
+}
 
