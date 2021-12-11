@@ -1,6 +1,6 @@
 .footer{
-    background-color: #333;
+    background-color: rgba(3, 3, 3, 0.849) !important;
     height: 10vh;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }

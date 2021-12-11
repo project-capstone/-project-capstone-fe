@@ -1,6 +1,12 @@
 .colorNav{
     /* background-color: red; */
-    background-color: #333 !important;
+    background-color: rgb(255, 255, 255) !important;
     font-size: 24px;
+    box-shadow: 0px 2px rgb(223, 248, 229);
+
 }
 
+.title-icon{
+    color: #0c6632 !important;
+    
+}
