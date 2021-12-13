@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import { Button, Modal, Form, FloatingLabel, Spinner } from "react-bootstrap";
-// import SignIn from "../signin/signin";
+import SignIn from "../signin/signin";
 import "./signup.css";
 
 const SignUp = (props) => {
-  // const [showSignin, setShowSignin] = useState(false);
+  const [showSignin, setShowSignin] = useState(false);
   const [name, setName] = useState(" ");
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
   const [phone, setPhone] = useState(" ");
   const [loading, setLoading] = useState(false);
-  // const [errMsg, setErrMsg] = useState(null);
 
     const handleRegister = () =>{
       const body ={
@@ -28,11 +27,18 @@ const SignUp = (props) => {
       axios.post("https://barengin.site/signup", body)
       .then((data) =>{
         console.log(data, "succes")
-        swal("succes register");
+        props.close()
+        swal({
+          text:"succes register",
+          icon : "success"});
       })
       .catch((err) =>{
         console.log(err.response.data.Message)
-        swal(err.response.data.Message)
+        swal(
+          {
+            text : err.response.data.Message,
+            icon :"error"
+          })
       })
       .finally(() =>setLoading(false))
     }
@@ -64,6 +70,7 @@ const SignUp = (props) => {
         )
     }
     return (
+      <>
       <Modal
       className="modal p-5"
       backdrop="static"
@@ -162,11 +169,20 @@ const SignUp = (props) => {
               SignUp
             </Button>
           </div>
-
-         
-        </div>
+          <div className="divLogin mt-3 d-flex justify-content-center align-items-center">
+              <p className="me-2">Already have an Account ?</p>
+               <p
+                onClick={() => setShowSignin(true) & props.close()}
+                className="toSignIn"
+              >
+                Sign In
+              </p>
+            </div>
+          </div>
       </Modal.Body>
     </Modal>
+    <SignIn show={showSignin} close={() => setShowSignin(false)} />
+    </>
     )
   }  
 
