@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 // import axios from "axios";
-import SignUp from "../signup/signup";
+// import SignUp from "../signup/signup";
 import "./signin.css";
 
 const SignIn = (props) => {
-  const [showSignup, setShowSignup] = useState(false);
+  // const [showSignup, setShowSignup] = useState(false);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -134,7 +134,7 @@ const SignIn = (props) => {
 
             <div className="divButton mt-4 d-flex justify-content-between align-items-center">
               <Button
-                className="me-2 col-6 btCancel"
+                className="me-2 col btCancel"
                 variant="secondary"
                 onClick={props.close}
               >
@@ -142,14 +142,14 @@ const SignIn = (props) => {
               </Button>
 
               <Button
-                className="col-6 btSignIn"
+                className="col btSignIn"
                 variant="primary"
                 onClick={handleSignIn}
               >
                 SignIn
               </Button>
             </div>
-            <div className="divSignUp mt-3 d-flex justify-content-center align-items-center">
+            {/* <div className="divSignUp mt-3 d-flex justify-content-center align-items-center">
               <p className="me-2">New User ?</p>
               <p
                 onClick={() => setShowSignup(true) & props.close()}
@@ -157,12 +157,12 @@ const SignIn = (props) => {
               >
                 Sign Up
               </p>
-            </div>
+            </div> */}
           </div>
         </Modal.Body>
       </Modal>
 
-      <SignUp show={showSignup} close={() => setShowSignup(false)} />
+      {/* <SignUp show={showSignup} close={() => setShowSignup(false)} /> */}
     </>
   );
 };
