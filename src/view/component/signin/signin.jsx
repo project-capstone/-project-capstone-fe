@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
-import axios from "axios";
+// import axios from "axios";
 import SignUp from "../signup/signup";
 import "./signin.css";
 
@@ -26,8 +26,8 @@ const SignIn = (props) => {
   };
 
   const findFormErrors = () => {
-    //eslint-disable-next-line
     const regexEmail =
+      // eslint-disable-next-line
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     const newErrors = {};
