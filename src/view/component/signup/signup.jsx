@@ -72,7 +72,6 @@ const SignUp = (props) => {
         .post("https://barengin.site/signup", objData)
         .then((response) => {
           console.log(response.message);
-
           swal({
             text: response.message,
             icon: "success",
