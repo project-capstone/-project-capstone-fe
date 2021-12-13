@@ -1,6 +1,6 @@
 import './App.css';
 import Footer from './view/component/footer/footer';
-import GroupProdut from './view/component/grupCard/groupProduct';
+// import GroupProdut from './view/component/grupCard/groupProduct';
 import NavBarApp from './view/component/navbar/NavBarApp';
 import Home from './view/pages';
 
