@@ -6,16 +6,12 @@ import "./home.css"
 const Home = () => {
     return(
         <>
-        <NavBarApp/>
         <div className="HomeContainer">
         <div className="Containerbanner">
-            <div className="banner"> 
-           
-            </div>
+         <div className="banner"/>
         </div>
         <div className="CardContainer"><CardProduct/></div>
         </div>
-        <Footer/>
         </>
 
     )
