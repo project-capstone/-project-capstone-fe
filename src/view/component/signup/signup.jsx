@@ -7,91 +7,6 @@ import "./signup.css";
 
 const SignUp = (props) => {
   const [showSignin, setShowSignin] = useState(false);
-<<<<<<< HEAD
-
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
-  const { name, email, password, phonenumber } = form;
-
-  const setField = (field, value) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-    // Check and see if errors exist, and remove them from the error object:
-    if (!!errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
-  };
-
-  const findFormErrors = () => {
-    const newErrors = {};
-    const regexEmail =
-      // eslint-disable-next-line
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-    // name errors
-    if (!name || name === "") newErrors.name = "cannot be blank!";
-    else if (name.length < 3) newErrors.name = "name is too short!";
-    // email errors
-    if (!email || email === "") newErrors.email = "cannot be blank!";
-    else if (regexEmail.test(email) === false)
-      newErrors.email = "email is not valid!";
-    // password errors
-    if (!password || password === "") newErrors.password = "cannot be blank!";
-    else if (password.length < 6) newErrors.password = "password is too short!";
-    // password errors
-    if (!phonenumber || phonenumber === "")
-      newErrors.phonenumber = "cannot be blank!";
-    else if (phonenumber.length < 8)
-      newErrors.phonenumber = "phone number is too short!";
-
-    return newErrors;
-  };
-
-  const handleSignUp = (e) => {
-    e.preventDefault();
-
-    const newErrors = findFormErrors();
-    // Conditional logic:
-    if (Object.keys(newErrors).length > 0) {
-      // We got errors!
-      setErrors(newErrors);
-    } else {
-      const objData = {
-        name: name,
-        email: email,
-        password: password,
-        phone: phonenumber,
-      };
-
-      console.log(objData);
-
-      axios
-        .post("https://barengin.site/signup", objData)
-        .then((response) => {
-          console.log(response.message);
-          swal({
-            text: response.message,
-            icon: "success",
-          });
-        })
-        .catch((err) => {
-          if (err) {
-            swal("Oh No!", err.message, "error");
-          } else {
-            swal.stopLoading();
-            swal.close();
-          }
-        })
-        .finally(() => {
-          if (props.close) {
-            props.close();
-          }
-        });
-=======
   const [name, setName] = useState(" ");
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
@@ -126,7 +41,6 @@ const SignUp = (props) => {
           })
       })
       .finally(() =>setLoading(false))
->>>>>>> 95a2c4b3892aa04a04c717b1ba84d1122e3648f6
     }
 
   const Modalregister =() =>{
