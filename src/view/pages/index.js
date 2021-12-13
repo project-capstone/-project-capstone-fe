@@ -1,6 +1,6 @@
 import CardProduct from "../component/card/card"
-import Footer from "../component/footer/footer"
-import NavBarApp from "../component/navbar/NavBarApp"
+// import Footer from "../component/footer/footer"
+// import NavBarApp from "../component/navbar/NavBarApp"
 import "./home.css"
 
 const Home = () => {
