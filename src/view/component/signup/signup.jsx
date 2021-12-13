@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
-import axios from "axios";
+// import axios from "axios";
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
-import SignIn from "../signin/signin";
 import "./signup.css";
 
 const SignUp = (props) => {
-  const [showSignin, setShowSignin] = useState(false);
-
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const { name, email, password, phonenumber } = form;
@@ -67,6 +64,7 @@ const SignUp = (props) => {
       };
 
       console.log(objData);
+      swal(objData);
 
       // axios
       //   .post("https://barengin.site/signup", objData)
@@ -191,21 +189,9 @@ const SignUp = (props) => {
                 SignUp
               </Button>
             </div>
-
-            <div className="divLogin mt-3 d-flex justify-content-center align-items-center">
-              <p className="me-2">Already have an Account ?</p>
-              <p
-                onClick={() => setShowSignin(true) & props.close()}
-                className="toSignIn"
-              >
-                Sign In
-              </p>
-            </div>
           </div>
         </Modal.Body>
       </Modal>
-
-      <SignIn show={showSignin} close={() => setShowSignin(false)} />
     </>
   );
 };

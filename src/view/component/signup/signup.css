@@ -22,15 +22,3 @@
 .modal .modal-register .btCancel {
   border: none;
 }
-
-.modal .modal-register .toSignIn {
-  color: #0c6632;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.modal .modal-register .toSignIn:hover {
-  color: #39f5a3;
-  font-weight: bold;
-  cursor: pointer;
-}
