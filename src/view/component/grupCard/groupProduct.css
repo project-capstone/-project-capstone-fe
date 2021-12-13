@@ -1,0 +1,62 @@
+.groupProductContainer{
+    width: 100vw;
+    /* background-color: red; */
+    height: auto;
+}
+
+.groupContent{
+    width: 71vw;
+    height: auto;
+    background:rgba(236, 248, 243, 0.445);   
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.titleProduct{
+    /* background-color: royalblue; */
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.fieldProduct{
+    margin-bottom: 40px;
+    width: 71vw;
+}
+
+.CardGroup{
+    width: 17.14vw ;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: -1px 4px 10px 4px rgb(206, 206, 206);
+}
+.statusAvaliable{
+    width: 80px ;
+    height: 30px;
+    background-color: rgba(153, 255, 158, 0.685);
+    text-align: center;
+}
+.statusFull{
+    width: 60px ;
+    height: 30px;
+    background-color: rgba(247, 108, 119, 0.685);
+    text-align: center;
+}
+
+.b{
+    background-color: indigo;
+}
+.aaa{
+    background-color: hotpink;
+}
+
+.list{
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+.ButtonOrder{
+    width: 100px;
+    margin: 0 auto;
+}
+
+.listuser{
+    font-weight: 500;
+    font-size: 15px;
+}
