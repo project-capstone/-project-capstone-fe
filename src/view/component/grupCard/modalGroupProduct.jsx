@@ -1,28 +1,48 @@
-import { Modal,Button } from "react-bootstrap";
+import { Modal,Button, Row, Col } from "react-bootstrap";
+import "./modalGroupProduct.css"
 
 const GroupModalProduct =(props) =>{
     return (
         <Modal
           {...props}
-          size="lg"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Modal heading
+              Netflix
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
-            </p>
+            <div className="modalContainer">
+                <div className="iconModal">
+                <img src="https://awsimages.detik.net.id/visual/2020/06/09/jordan-netflix.jpeg" alt="img" />
+                </div>
+                <div className="descModal">
+                  <br/>
+                  <h5>Detail Price</h5>
+                  <Row>
+                    <Col>
+                        <Col>Group Capacity</Col>
+                        <Col>Netflix Price</Col>
+                        <Col>Netflix Group price</Col>
+                        <Col>Admin fee</Col>
+                        <Col><h6>Total Price</h6></Col>
+                    </Col>
+                    <Col>
+                        <Col>4</Col>
+                        <Col>Rp. 186.000</Col>
+                        <Col>Rp. 186.000 / 4 = Rp. 46.500</Col>
+                        <Col>Rp. 6500</Col>
+                        <Col><h6>Rp. 53.000</h6></Col>
+                    </Col>
+                  </Row>
+                </div>
+            </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={props.onHide}>Close</Button>
+            <Button onClick={props.onHide} variant="success">Order</Button>
           </Modal.Footer>
         </Modal>
       );
