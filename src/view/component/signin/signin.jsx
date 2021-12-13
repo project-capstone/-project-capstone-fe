@@ -1,16 +1,26 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
-// import axios from "axios";
+import { Button, Modal, Form, FloatingLabel, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import allStore from "../../../store/actions/index.js";
 // import SignUp from "../signup/signup";
 import "./signin.css";
 
 const SignIn = (props) => {
   // const [showSignup, setShowSignup] = useState(false);
 
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
+
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
   const { email, password } = form;
+
+  const dispatch = useDispatch();
+  const loading = useSelector(({ loading }) => loading);
 
   const setField = (field, value) => {
     setForm({
@@ -56,35 +66,28 @@ const SignIn = (props) => {
       };
 
       console.log(objData);
+      console.log("1.masuk Handle Submit");
+      dispatch(allStore.postLogin(objData));
+
       if (props.close) {
         props.close();
       }
 
-      //   axios
-      //     .post("https://barengin.site/login", objData)
-      //     .then((response) => {
-      //       // const message = response.data.message;
-      //       console.log(response.data.Token);
-      //       console.log(response.Message);
-      //       // console.log(response.data.status);
-      //       console.log(response.data.ID);
-      //       console.log(response.data.Name);
-      //       console.log(response.data.Role);
+      goToHome();
 
-      //       localStorage.setItem("token", response.data.Token);
-      //       localStorage.setItem("id", response.data.ID);
-      //       localStorage.setItem("name", response.data.Name);
-      //       localStorage.setItem("role", response.data.Role);
-
-      //       if (props.close) {
-      //         props.close();
-      //       }
-
-      //       alert(response.data.message);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
+      if (loading) {
+        console.log("lagi loading nih");
+        navigate("/");
+        return (
+          <div
+            className="bg-danger d-flex justify-content-center align-items-center flex-column"
+            style={{ height: "100vh", opacity: "0.1" }}
+          >
+            <Spinner animation="border" />
+            <Spinner animation="grow" />
+          </div>
+        );
+      }
     }
   };
 
