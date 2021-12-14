@@ -1,0 +1,31 @@
+.modal {
+  border: none;
+  border-radius: 10;
+}
+
+.modal .modal-register {
+  background-color: rgba(236, 248, 243, 0.445);
+}
+
+.modal .modal-register .btSignUp {
+  background-color: #0c6632;
+  border: none;
+  color: white;
+}
+
+.modal .modal-register .btSignUp:hover {
+  background-color: #39f5a3;
+  border: none;
+  color: #0c6632;
+}
+
+.modal .modal-register .btCancel {
+  border: none;
+}
+.spiner{
+  width: 35px;
+  margin: 0 auto;
+}
+.toSignIn{
+  cursor: pointer;
+}

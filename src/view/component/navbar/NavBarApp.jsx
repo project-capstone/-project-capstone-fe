@@ -17,11 +17,11 @@ const NavBarApp = () => {
   };
 
   const navbaractionpage = () => {
+
     if (
       localStorage.getItem("token") &&
       localStorage.getItem("role") === "customer"
     ) {
-      return (
         <>
           <NavDropdown
             title={
@@ -67,6 +67,7 @@ const NavBarApp = () => {
           <SignIn show={showSignin} close={() => setShowSignin(false)} />
         </>
       );
+
     } else if (
       localStorage.getItem("token") &&
       localStorage.getItem("role") === "admin"
