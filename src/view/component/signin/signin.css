@@ -13,6 +13,10 @@
   color: white;
 }
 
+.modal .modal-signin .divSignUp {
+  overflow: hidden;
+}
+
 .modal .modal-signin .btSignIn:hover {
   background-color: #39f5a3;
   border: none;
@@ -33,4 +37,9 @@
   color: #39f5a3;
   font-weight: bold;
   cursor: pointer;
+}
+
+.modal-loading .spiner {
+  width: 35px;
+  margin: 0 auto;
 }
