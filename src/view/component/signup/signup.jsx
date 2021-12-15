@@ -92,7 +92,7 @@ const SignUp = (props) => {
                 type="text"
                 placeholder="Name"
                 required
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value.trim())}
                 // isInvalid={!!errors.name}
               />
               <Form.Control.Feedback type="invalid">
