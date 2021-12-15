@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
-// import axios from "axios";
+import swal from "sweetalert";
+import axios from "axios";
+import { Button, Modal, Form, FloatingLabel, Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 // import SignUp from "../signup/signup";
 import "./signin.css";
 
+export let token = "";
+
 const SignIn = (props) => {
   // const [showSignup, setShowSignup] = useState(false);
+
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
   const { email, password } = form;
+
+  const [loading, setLoading] = useState(false);
 
   const setField = (field, value) => {
     setForm({
@@ -50,43 +61,71 @@ const SignIn = (props) => {
       // We got errors!
       setErrors(newErrors);
     } else {
+      setLoading(true);
       const objData = {
         email: email,
         password: password,
       };
 
-      console.log(objData);
+      axios
+        .post("https://barengin.site/login", objData)
+        .then((response) => {
+          swal({
+            text: response.data.Message,
+            icon: "success",
+          });
+
+          // menyimpan token ke local storage
+          if (response.data.Data !== null) {
+            localStorage.setItem("token", response.data.Data.Token);
+            localStorage.setItem("name", response.data.Data.Name);
+            localStorage.setItem("role", response.data.Data.Role);
+
+            goToHome();
+          }
+        })
+        .catch((err) => {
+          if (err) {
+            swal({
+              text: err.response.data.Message,
+              icon: "error",
+            });
+          } else {
+            swal.stopLoading();
+            swal.close();
+          }
+        })
+        .finally(() => setLoading(false));
+
       if (props.close) {
         props.close();
       }
-
-      //   axios
-      //     .post("https://barengin.site/login", objData)
-      //     .then((response) => {
-      //       // const message = response.data.message;
-      //       console.log(response.data.Token);
-      //       console.log(response.Message);
-      //       // console.log(response.data.status);
-      //       console.log(response.data.ID);
-      //       console.log(response.data.Name);
-      //       console.log(response.data.Role);
-
-      //       localStorage.setItem("token", response.data.Token);
-      //       localStorage.setItem("id", response.data.ID);
-      //       localStorage.setItem("name", response.data.Name);
-      //       localStorage.setItem("role", response.data.Role);
-
-      //       if (props.close) {
-      //         props.close();
-      //       }
-
-      //       alert(response.data.message);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
     }
   };
+
+  if (loading) {
+    console.log("INI LOADING!");
+    return (
+      <Modal
+        className="p-5"
+        backdrop="static"
+        keyboard={false}
+        dialogClassName="col-7"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={props.show}
+        cancel={props.close}
+      >
+        <Modal.Body className="modal-loading p-5">
+          <div>
+            <div className="spiner">
+              <Spinner animation="border" variant="success" />
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+    );
+  }
 
   return (
     <>
@@ -107,7 +146,7 @@ const SignIn = (props) => {
                 <Form.Control
                   type="email"
                   placeholder="Email"
-                  onChange={(e) => setField("email", e.target.value)}
+                  onChange={(e) => setField("email", e.target.value.trim())}
                   required
                   isInvalid={!!errors.email}
                 />
@@ -121,7 +160,7 @@ const SignIn = (props) => {
               <FloatingLabel label="Password" className="mb-3 mt-3">
                 <Form.Control
                   type="password"
-                  onChange={(e) => setField("password", e.target.value)}
+                  onChange={(e) => setField("password", e.target.value.trim())}
                   placeholder="Password"
                   required
                   isInvalid={!!errors.password}

@@ -1,19 +1,19 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './view/component/footer/footer';
-import GroupProdut from './view/component/grupCard/groupProduct';
 import NavBarApp from './view/component/navbar/NavBarApp';
 import Home from './view/pages';
 
 function App() {
   return (
-    <>
-    <NavBarApp/>
-    {/* <Home/> */}
-    <GroupProdut/>
+  <BrowserRouter>
+      <NavBarApp/>
+    <Routes>
+      <Route path="/" element={<Home/>} />
+    </Routes>
     <Footer/>
-    </>
-    // <NavBarApp/>
-  );
+  </BrowserRouter>  
+  )
 }
 
 export default App;
