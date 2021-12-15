@@ -1,6 +1,6 @@
 import CardProduct from "../component/card/card"
 import {useDispatch,useSelector} from 'react-redux'
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
 import allStore from "../../store/actions";
 
 import "./home.css"
