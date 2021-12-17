@@ -8,6 +8,7 @@
     width: 71vw;
     height: auto;
     background:rgba(236, 248, 243, 0.445);   
+    padding-bottom: 160px;
     margin: 0 auto;
     padding-top: 20px;
 }
@@ -59,4 +60,17 @@
 .listuser{
     font-weight: 500;
     font-size: 15px;
+}
+.loadGroup{
+    width: 200px;
+    height: 40.5vh;
+    padding-top: 140px;
+    margin: 0 auto;
+    color: #0c6632;
+
+}
+
+.imgGroup img{
+    width: 70px;
+    border-radius: 10%;
 }

@@ -1,23 +1,48 @@
+import { useEffect,useState } from "react";
 import { Modal,Button, Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./modalGroupProduct.css"
 
 const GroupModalProduct =(props) =>{
+  const [detailProduct, setDetailProduct] = useState([])
+  const groupProduct = useSelector(({groupProduct}) => groupProduct)
+  const {ProductsID} = useParams()
+
+  
+  useEffect(() =>{
+    setDetailProduct(groupProduct.filter(item => item.ProductsID === +ProductsID))
+  },[groupProduct, ProductsID])
+
+  useEffect(() =>{
+  // console.log(detailProduct, "detail")
+  },[detailProduct])
+
+  const Rupiah = Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+
+  let share = ((detailProduct.length >0 &&  detailProduct[0].Price)/(detailProduct.length >0 &&  detailProduct[0].Limit))
+  let total = share + (detailProduct.length >0 &&  detailProduct[0].AdminFee)
+
+
     return (
         <Modal
           {...props}
-          size="md"
+          size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Netflix
+            {detailProduct.length >0 &&  detailProduct[0].Name_Product}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="modalContainer">
                 <div className="iconModal">
-                <img src="https://awsimages.detik.net.id/visual/2020/06/09/jordan-netflix.jpeg" alt="img" />
+                <img src={detailProduct.length >0 &&  detailProduct[0].Url} alt="img" className="imgModal" style={{width:"160px"}}/>
                 </div>
                 <div className="descModal">
                   <br/>
@@ -31,16 +56,19 @@ const GroupModalProduct =(props) =>{
                         <Col><h6>Total Price</h6></Col>
                     </Col>
                     <Col>
-                        <Col>4</Col>
-                        <Col>Rp. 186.000</Col>
-                        <Col>Rp. 186.000 / 4 = Rp. 46.500</Col>
-                        <Col>Rp. 6500</Col>
-                        <Col><h6>Rp. 53.000</h6></Col>
+                        <Col>{detailProduct.length >0 &&  detailProduct[0].Limit}</Col>
+                        <Col>{Rupiah.format(detailProduct.length >0 &&  detailProduct[0].Price)}</Col>
+                        <Col>{Rupiah.format(detailProduct.length >0 &&  detailProduct[0].Price)} / {detailProduct.length >0 &&  detailProduct[0].Limit} = {Rupiah.format(share)}</Col>
+                        <Col>{Rupiah.format(detailProduct.length >0 &&  detailProduct[0].AdminFee)}</Col>
+                        <Col><h6>{Rupiah.format(total)}</h6></Col>
                     </Col>
                   </Row>
                 </div>
             </div>
           </Modal.Body>
+        
+        
+
           <Modal.Footer>
             <Button onClick={props.onHide} variant="success">Order</Button>
           </Modal.Footer>
@@ -50,21 +78,3 @@ const GroupModalProduct =(props) =>{
 
 export default GroupModalProduct
   
-//   function App() {
-//     const [modalShow, setModalShow] = React.useState(false);
-  
-//     return (
-//       <>
-//         <Button variant="primary" onClick={() => setModalShow(true)}>
-//           Launch vertically centered modal
-//         </Button>
-  
-//         <MyVerticallyCenteredModal
-//           show={modalShow}
-//           onHide={() => setModalShow(false)}
-//         />
-//       </>
-//     );
-//   }
-  
-//   render(<App />);
