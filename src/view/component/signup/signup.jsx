@@ -91,11 +91,13 @@ const SignUp = (props) => {
           });
         })
         .finally(() => setLoading(false));
-
+    }
+  };
 
   const Modalregister = () => {
-    if (loading) {
-      console.log(loading, "regis");
+    if(loading){
+      console.log(loading, "regis")
+
       return (
         <Modal
           className="modal p-5"
