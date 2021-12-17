@@ -3,6 +3,7 @@ import { fetchProduct,setProducts } from "./productList.js";
 import setLoading from "./setLoading.js";
 import setError from "./setError.js";
 import { fetchGroupProduct, setGroupProducts } from "./groupProduct.js";
+import { fetchUserGroupProduct,setUserGroupProducts } from "./orderUserGroup.js";
 
 const allStore = {
     postLogin,
@@ -12,7 +13,9 @@ const allStore = {
     fetchProduct,
     setProducts,
     fetchGroupProduct,
-    setGroupProducts
+    setGroupProducts,
+    fetchUserGroupProduct,
+    setUserGroupProducts
   };
   
   export default allStore;
