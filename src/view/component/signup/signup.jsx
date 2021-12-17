@@ -7,6 +7,7 @@ import "./signup.css";
 
 const SignUp = (props) => {
   const [showSignin, setShowSignin] = useState(false);
+
   // const [name, setName] = useState(" ");
   // const [email, setEmail] = useState(" ");
   // const [password, setPassword] = useState(" ");
@@ -241,6 +242,7 @@ const SignUp = (props) => {
   };
 
   return <>{Modalregister()}</>;
+
 };
 
 export default SignUp;
