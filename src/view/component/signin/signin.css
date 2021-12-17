@@ -1,0 +1,45 @@
+.modal {
+  border: none;
+  border-radius: 10;
+}
+
+.modal .modal-signin {
+  background-color: rgba(236, 248, 243, 0.445);
+}
+
+.modal .modal-signin .btSignIn {
+  background-color: #0c6632;
+  border: none;
+  color: white;
+}
+
+.modal .modal-signin .divSignUp {
+  overflow: hidden;
+}
+
+.modal .modal-signin .btSignIn:hover {
+  background-color: #39f5a3;
+  border: none;
+  color: #0c6632;
+}
+
+.modal .modal-signin .btCancel {
+  border: none;
+}
+
+.modal .modal-signin .toSignUp {
+  color: #0c6632;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal .modal-signin .toSignUp:hover {
+  color: #39f5a3;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-loading .spiner {
+  width: 35px;
+  margin: 0 auto;
+}

@@ -1,0 +1,45 @@
+.BaseContainer {
+  background: rgba(236, 248, 243, 0.445);
+  width: 80vw;
+  margin: 0 auto;
+  height: auto;
+  padding-top: 20px;
+}
+
+.BaseContainer .detail {
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
+}
+
+.BaseContainer .detail-image {
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.BaseContainer .detail-data {
+  width: 70vw;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
+}
+
+.spiner {
+  width: 35px;
+  margin: 0 auto;
+}
+
+.BaseContainer .detail .detail-data .image {
+  width: 100%;
+  height: 15vw;
+  /* object-fit: cover; */
+}
+
+.cardDel {
+  background-color: #f3f3f3;
+  /* color: #dc3545; */
+}
