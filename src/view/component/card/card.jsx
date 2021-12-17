@@ -67,6 +67,8 @@ const CardProduct = () => {
                   <Row>
                     <Col md="5">Price</Col>
                     <Col>{Rupiah.format(`${el.Price}`)}</Col>
+                    <Col md="5">Capacity</Col>
+                    <Col>{el.Limit}</Col>
                   </Row>
                 </Card.Text>
                 <Button
