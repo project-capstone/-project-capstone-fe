@@ -22,6 +22,8 @@ const SignIn = (props) => {
   const { email, password } = form;
 
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(true);
+  const handleClose = () => setShow(false);
 
   const setField = (field, value) => {
     setForm({
@@ -83,6 +85,8 @@ const SignIn = (props) => {
 
             goToHome();
           }
+
+          console.log(response.data.Data.Token);
         })
         .catch((err) => {
           if (err) {
@@ -113,11 +117,14 @@ const SignIn = (props) => {
         dialogClassName="col-7"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        show={props.show}
-        cancel={props.close}
+        show={show}
+        onHide={handleClose}
       >
         <Modal.Body className="modal-loading p-5">
           <div>
+            <h3 className="text-center" style={{ color: "#0c6632" }}>
+              Loading ...
+            </h3>
             <div className="spiner">
               <Spinner animation="border" variant="success" />
             </div>
