@@ -18,7 +18,6 @@ const GroupProduct =() =>{
     const loading = useSelector (({loading}) =>loading)
     const [load, setLoad] = useState(false)
     const groupUserProduct = useSelector((groupUserProduct) =>groupUserProduct)
-    console.log(groupUserProduct , "usr");
 
     useEffect(() =>{
         dispatch(allStore.fetchUserGroupProduct())
@@ -32,6 +31,7 @@ const GroupProduct =() =>{
         return parseFloat(b.ID) - parseFloat(a.ID)
     })
     
+    const order = filterID.filter(item =>item.GetOrder )
     
   
     const addGroup = () =>{
@@ -46,7 +46,7 @@ const GroupProduct =() =>{
         .then((data) =>{
             console.log(data, "succes")
             swal({
-              text:"succes add group product",
+              text:"success add group product",
               icon : "success"});
               setTimeout(() => {
                   window.location.reload()
@@ -55,7 +55,7 @@ const GroupProduct =() =>{
         .catch((err) =>{
             console.log(err.response.data)
             swal({
-                text:"Please Login first ",
+                text:"Please login to continue",
                 icon : "error"});  
         })
         .finally((_) => setLoad(false))
@@ -113,8 +113,9 @@ const GroupProduct =() =>{
                     </div>
                 <div className="fieldProduct d-flex flex-wrap justify-content-beetwen">
 
-                    {filterID.map((el, i) => (
-                            
+                    {filterID.map((el, i) => {
+                        return (
+
                     <div className="CardGroup mx-1 my-2" key={i}>
                         <Row>
                             <Col className="imgGroup">
@@ -126,19 +127,34 @@ const GroupProduct =() =>{
                         </Row>
                         <h5 style={{textAlign:"center", paddingTop:"20px"}}>{el.NameGroupProduct}</h5>
                         <hr style={{width:"200px" , margin:"0 auto", marginBottom:"10px"}}/>
-                            <ul>
+                           
                              
-
-                                     <li className="listuser">{el.ID}</li>
+                                    {order.map((el2,l) =>{
+                                        return (
+                                        <ul key={l}>  
+                                           {el2.GetOrder.map((el3, k) =>{
+                                               if(el.ID === el3.GroupProductID){
+                                                   return(
+                                                       <li className="listuser" key={k}>{el3.Name}</li>
+                                                   )
+                                               }else{
+                                                <li className="listuser" ></li>
+                                               }
+                                           })}
+                                            </ul>   
+                                        )
+                                               
+                                       
+                                        })}
                              
-
-                                                       
-                            </ul>
+                            
                         <div className="ButtonOrder">
                         <Button variant="success" className="mt-1" style={{width:"100px",}}onClick={() => setModalShow(true)}>Order</Button>
                         </div>
                     </div>
-                    ))}
+                        )
+                            
+                        })}
                     <GroupModalProduct
                     show={modalShow}
                     onHide={() => setModalShow(false)}
