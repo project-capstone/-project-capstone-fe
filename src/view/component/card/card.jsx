@@ -18,9 +18,9 @@ const CardProduct = () =>{
     
  
     const navigate = useNavigate();
-    const toNavigate = (ID) =>{
-        navigate(`/group/${ID}`)
-        console.log(ID, "id")
+    const toNavigate = (ProductsID) =>{
+        navigate(`/group/${ProductsID}`)
+        console.log(ProductsID, "idkjhkjb")
     }
     
     const Rupiah = Intl.NumberFormat("id-ID", {
@@ -29,8 +29,6 @@ const CardProduct = () =>{
     });
   
     if(loading){
-        console.log(loading, "loadi")
-
         return(
             <div>
                 <div className="product" id="product"><h3 style={{color:"#0c6632"}}>Product</h3> <br/></div>
