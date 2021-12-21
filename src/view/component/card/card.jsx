@@ -18,11 +18,15 @@ const CardProduct = () =>{
     
  
     const navigate = useNavigate();
-    const toNavigate = (ProductsID) =>{
-        navigate(`/group/${ProductsID}`)
-        console.log(ProductsID, "idkjhkjb")
+  const toNavigate = (ID) => {
+    if (localStorage.getItem("role") === "admin") {
+      navigate(`/products/${ID}`);
+    } else {
+      navigate(`/group/${ID}`);
+      console.log(ID, "id");
     }
-    
+  };
+
     const Rupiah = Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
