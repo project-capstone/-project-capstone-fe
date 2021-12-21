@@ -50,7 +50,7 @@ const SignIn = (props) => {
       newErrors.email = "email is not valid!";
     // password errors
     if (!password || password === "") newErrors.password = "cannot be blank!";
-    else if (password.length < 4) newErrors.password = "comment is too short!";
+    else if (password.length < 6) newErrors.password = "password is too short!";
     return newErrors;
   };
 
