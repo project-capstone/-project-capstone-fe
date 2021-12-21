@@ -19,6 +19,9 @@ const EditProduct = () => {
   const [errors, setErrors] = useState({});
   const { name_product, detail_product, price, limit, photo } = form;
 
+  const [product, setProduct] = useState({});
+  const [foto, setFoto] = useState({});
+
   const setField = (field, value) => {
     setForm({
       ...form,
@@ -35,16 +38,25 @@ const EditProduct = () => {
   const findFormErrors = () => {
     const newErrors = {};
     // name_product errors
-    if (!name_product || name_product === "")
+    if (
+      (!name_product || name_product === "") &&
+      (!product.Name_Product || product.Name_Product === "")
+    )
       newErrors.name_product = "cannot be blank!";
     // detail_product errors
-    if (!detail_product || detail_product === "")
+    if (
+      (!detail_product || detail_product === "") &&
+      (!product.Detail_Product || product.Detail_Product === "")
+    )
       newErrors.detail_product = "cannot be blank!";
     // price errors
-    if (!price || price === "") newErrors.price = "cannot be blank!";
+    if ((!price || price === "") && (!product.Price || product.Price === ""))
+      newErrors.price = "cannot be blank!";
+    if (price < 1) newErrors.price = "price cannot be less than 1";
     // limit errors
-    if (!limit || limit === "") newErrors.limit = "cannot be blank!";
-    else if (limit <= 1) newErrors.limit = "limit cannot be less than 2";
+    if ((!limit || limit === "") && (!product.Limit || product.Limit === ""))
+      newErrors.limit = "cannot be blank!";
+    if (limit <= 1) newErrors.limit = "limit cannot be less than 2";
     // else if (limit >= 10) newErrors.limit = "limit cannot be more than 9";
     // photo errors
     // if (!photo || photo === "") newErrors.photo = "cannot be blank!";
@@ -96,69 +108,194 @@ const EditProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const goToHome = () => {
-    navigate(`/`);
-  };
-
   const goToDetail = (ID) => {
     navigate(`/products/${ID}`);
   };
 
-  // const [product, setProduct] = useState({});
-  const [foto, setFoto] = useState({});
-
   useEffect(() => {
     const getAllDataUSer = () => {
-      // setLoading(true);
+      setLoading(true);
       axios
         .get(`https://barengin.site/products/${params.id}`)
         .then(({ data }) => {
-          console.log(data.Data);
+          // console.log(data.Data);
 
-          setField("name_product", data.Data.Name_Product);
-          setField("detail_product", data.Data.Detail_Product);
-          setField("price", data.Data.Price);
-          setField("limit", data.Data.Limit);
-          setField("photo", data.Data.Url);
-          // setFoto(data.Data.Photo);
+          setProduct(data.Data);
+
+          setField("name_product", product.Name_Product);
+          setField("detail_product", product.Detail_Product);
+          setField("price", product.Price);
+          setField("limit", product.Limit);
+          setField("photo", product.Url);
+
+          // setField("name_product", data.Data.Name_Product);
+          // setField("detail_product", data.Data.Detail_Product);
+          // setField("price", data.Data.Price);
+          // setField("limit", data.Data.Limit);
+          // setField("photo", data.Data.Url);
         })
         .catch((err) => {
           console.log(err.data.Message);
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      // .finally(() => {
-      //   setLoading(false);
-      // });
     };
     getAllDataUSer();
   }, []);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   axios
-  //     .get(`https://barengin.site/products/${params.id}`)
-  //     .then(({ data }) => {
-  //       // console.log(data.data);
-  //       setProduct(data.Data);
+  useEffect(() => {
+    if (!name_product || name_product === "" || name_product === undefined) {
+      setField("name_product", product.Name_Product);
+      console.log("data name kosong", product.Name_Product);
+    } else {
+      console.log(name_product);
+    }
 
-  //       // setname_productdb(product.Name_Product);
-  //       // setdetail_productdb(product.Detail_Product);
-  //       // setpricedb(product.Price);
-  //       // setlimitdb(product.Limit);
-  //       // setphotodb(product.Url);
+    if (
+      !detail_product ||
+      detail_product === "" ||
+      detail_product === undefined
+    ) {
+      setField("detail_product", product.Detail_Product);
+      console.log("data detail kosong", detail_product);
+    } else {
+      console.log(detail_product);
+    }
 
-  //       console.log(name_productdb);
-  //       console.log(detail_productdb);
-  //       console.log(pricedb);
-  //       console.log(limitdb);
-  //       console.log(photodb);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.data.Message);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // }, []);
+    if (!price || price === "" || price === undefined) {
+      setField("price", product.Price);
+      console.log("data price kosong", price);
+    } else {
+      console.log(price);
+    }
+
+    if (!limit || limit === "" || limit === undefined) {
+      setField("limit", product.Limit);
+      console.log("data limit kosong", limit);
+    } else {
+      console.log(limit);
+    }
+  }, [name_product]);
+
+  useEffect(() => {
+    if (!name_product || name_product === "" || name_product === undefined) {
+      setField("name_product", product.Name_Product);
+      console.log("data name kosong", product.Name_Product);
+    } else {
+      // console.log(product.Name_Product);
+      console.log(name_product);
+    }
+
+    if (
+      !detail_product ||
+      detail_product === "" ||
+      detail_product === undefined
+    ) {
+      setField("detail_product", product.Detail_Product);
+      console.log("data detail kosong", detail_product);
+    } else {
+      // console.log(product.Detail_Product);
+      console.log(detail_product);
+    }
+
+    if (!price || price === "" || price === undefined) {
+      setField("price", product.Price);
+      console.log("data price kosong", price);
+    } else {
+      // console.log(product.Price);
+      console.log(price);
+    }
+
+    if (!limit || limit === "" || limit === undefined) {
+      setField("limit", product.Limit);
+      console.log("data limit kosong", limit);
+    } else {
+      // console.log(product.Limit);
+      console.log(limit);
+    }
+    // console.log("detailnya: ", detail_product);
+  }, [detail_product]);
+
+  useEffect(() => {
+    if (!name_product || name_product === "" || name_product === undefined) {
+      setField("name_product", product.Name_Product);
+      // setField("name_product", localStorage.getItem("name_product"));
+      console.log("data name kosong", product.Name_Product);
+    } else {
+      // console.log(product.Name_Product);
+      console.log(name_product);
+    }
+
+    if (
+      !detail_product ||
+      detail_product === "" ||
+      detail_product === undefined
+    ) {
+      setField("detail_product", product.Detail_Product);
+      console.log("data detail kosong", detail_product);
+    } else {
+      // console.log(product.Detail_Product);
+      console.log(detail_product);
+    }
+
+    if (!price || price === "" || price === undefined) {
+      setField("price", product.Price);
+      console.log("data price kosong", price);
+    } else {
+      // console.log(product.Price);
+      console.log(price);
+    }
+
+    if (!limit || limit === "" || limit === undefined) {
+      setField("limit", product.Limit);
+      console.log("data limit kosong", limit);
+    } else {
+      // console.log(product.Limit);
+      console.log(limit);
+    }
+    // console.log("harganya: ", price);
+  }, [price]);
+
+  useEffect(() => {
+    if (!name_product || name_product === "" || name_product === undefined) {
+      setField("name_product", product.Name_Product);
+      // setField("name_product", localStorage.getItem("name_product"));
+      console.log("data name kosong", product.Name_Product);
+    } else {
+      // console.log(product.Name_Product);
+      console.log(name_product);
+    }
+
+    if (
+      !detail_product ||
+      detail_product === "" ||
+      detail_product === undefined
+    ) {
+      setField("detail_product", product.Detail_Product);
+      console.log("data detail kosong", detail_product);
+    } else {
+      // console.log(product.Detail_Product);
+      console.log(detail_product);
+    }
+
+    if (!price || price === "" || price === undefined) {
+      setField("price", product.Price);
+      console.log("data price kosong", price);
+    } else {
+      // console.log(product.Price);
+      console.log(price);
+    }
+
+    if (!limit || limit === "" || limit === undefined) {
+      setField("limit", product.Limit);
+      console.log("data limit kosong", limit);
+    } else {
+      // console.log(product.Limit);
+      console.log(limit);
+    }
+    // console.log("limitnya: ", limit);
+  }, [limit]);
 
   const handleCek = (e) => {
     e.preventDefault();
@@ -168,111 +305,170 @@ const EditProduct = () => {
       // We got errors!
       setErrors(newErrors);
     } else {
+      handleBlank();
       handleshowEdit();
+    }
+  };
+
+  const handleBlank = () => {
+    // e.preventDefault();
+
+    const arr = ["name_product", "detail_product", "price", "limit"];
+
+    for (let i = 0; i < arr.length; i++) {
+      // console.log(arr[i]);
+      if (arr[i] === "name_product") {
+        if (
+          !name_product ||
+          name_product === "" ||
+          name_product === undefined
+        ) {
+          setField("name_product", product.Name_Product);
+          // setField("name_product", localStorage.getItem("name_product"));
+          console.log("data name kosong", product.Name_Product);
+        } else {
+          // console.log(product.Name_Product);
+          console.log(name_product);
+        }
+      }
+
+      if (arr[i] === "detail_product") {
+        if (
+          !detail_product ||
+          detail_product === "" ||
+          detail_product === undefined
+        ) {
+          setField("detail_product", product.Detail_Product);
+          console.log("data detail kosong", detail_product);
+        } else {
+          // console.log(product.Detail_Product);
+          console.log(detail_product);
+        }
+      }
+
+      if (arr[i] === "price") {
+        if (!price || price === "" || price === undefined) {
+          setField("price", product.Price);
+          console.log("data price kosong", price);
+        } else {
+          // console.log(product.Price);
+          console.log(price);
+        }
+      }
+
+      if (arr[i] === "limit") {
+        if (!limit || limit === "" || limit === undefined) {
+          setField("limit", product.Limit);
+          console.log("data limit kosong", limit);
+        } else {
+          // console.log(product.Limit);
+          console.log(limit);
+        }
+      }
+
+      // console.log(product.Name_Product);
+      // console.log(product.Detail_Product);
+      // console.log(product.Price);
+      // console.log(product.Limit);
     }
   };
 
   const handleEdit = (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
 
     let prices = parseInt(price);
     let limits = parseInt(limit);
 
-    console.log("ini foto", foto);
+    if (!foto || foto === "") {
+      const data = new FormData();
+      data.append("name_product", name_product);
+      data.append("detail_product", detail_product);
+      data.append("price", prices);
+      data.append("limit", limits);
+      data.append("photo", photo);
 
-    // if (!foto || foto === "") {
-    //   const objData = {
-    //     name_product: name_product,
-    //     detail_product: detail_product,
-    //     price: prices,
-    //     limit: limits,
-    //   };
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
 
-    //   const config = {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     },
-    //   };
+      console.log(data);
+      console.log(name_product);
+      console.log(detail_product);
+      console.log(prices);
+      console.log(limits);
+      console.log(photo);
 
-    //   console.log(objData);
-    //   console.log(name_product);
-    //   console.log(detail_product);
-    //   console.log(prices);
-    //   console.log(limits);
-    // console.log(photo);
-
-    //   axios
-    //     .put(
-    //       `https://barengin.site//jwt/products/${params.id}`,
-    //       objData,
-    //       config
-    //     )
-    //     .then((response) => {
-    //       swal({
-    //         text: response.data.Message,
-    //         icon: "success",
-    //       });
-
-    //       goToDetail(`${params.id}`);
-    //     })
-    //     .catch((err) => {
-    //       if (err) {
-    //         swal({
-    //           text: err.response.data.Message,
-    //           icon: "error",
-    //         });
-    //       } else {
-    //         swal.stopLoading();
-    //         swal.close();
-    //       }
-    //     })
-    //     .finally(() => setLoading(false));
-    // } else {
-    const data = new FormData();
-    data.append("name_product", name_product);
-    data.append("detail_product", detail_product);
-    data.append("price", prices);
-    data.append("limit", limits);
-    data.append("photo", photo);
-
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-
-    console.log(data);
-    console.log(name_product);
-    console.log(detail_product);
-    console.log(prices);
-    console.log(limits);
-    console.log(photo);
-
-    axios
-      .put(`https://barengin.site/jwt/products/${params.id}`, data, config)
-      .then((response) => {
-        swal({
-          text: response.data.Message,
-          icon: "success",
-        });
-
-        goToDetail(`${params.id}`);
-      })
-      .catch((err) => {
-        if (err) {
+      axios
+        .put(`https://barengin.site/jwt/products/${params.id}`, data, config)
+        .then((response) => {
           swal({
-            text: err.response.data.Message,
-            icon: "error",
+            text: response.data.Message,
+            icon: "success",
           });
-        } else {
-          swal.stopLoading();
-          swal.close();
-        }
-      })
-      .finally(() => setLoading(false));
-    // }
+
+          goToDetail(`${params.id}`);
+        })
+        .catch((err) => {
+          if (err) {
+            swal({
+              text: err.response.data.Message,
+              icon: "error",
+            });
+          } else {
+            swal.stopLoading();
+            swal.close();
+          }
+        })
+        .finally(() => setLoading(false));
+    } else {
+      const data = new FormData();
+      data.append("name_product", name_product);
+      data.append("detail_product", detail_product);
+      data.append("price", prices);
+      data.append("limit", limits);
+      data.append("photo", foto);
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
+      console.log(data);
+      console.log(name_product);
+      console.log(detail_product);
+      console.log(prices);
+      console.log(limits);
+      console.log(foto);
+
+      axios
+        .put(`https://barengin.site/jwt/products/${params.id}`, data, config)
+        .then((response) => {
+          swal({
+            text: response.data.Message,
+            icon: "success",
+          });
+
+          goToDetail(`${params.id}`);
+        })
+        .catch((err) => {
+          if (err) {
+            swal({
+              text: err.response.data.Message,
+              icon: "error",
+            });
+          } else {
+            swal.stopLoading();
+            swal.close();
+          }
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
   if (loading) {
@@ -318,7 +514,8 @@ const EditProduct = () => {
                   <Form.Control
                     type="text"
                     placeholder="Product Name"
-                    value={name_product}
+                    defaultValue={product.Name_Product}
+                    // defaultValue={name_product}
                     onChange={(e) => setField("name_product", e.target.value)}
                     required
                     isInvalid={!!errors.name_product}
@@ -341,7 +538,8 @@ const EditProduct = () => {
                   <Form.Control
                     as="textarea"
                     placeholder="Detail Product"
-                    value={detail_product}
+                    defaultValue={product.Detail_Product}
+                    // defaultValue={detail_product}
                     style={{ height: "150px" }}
                     onChange={(e) => setField("detail_product", e.target.value)}
                     required
@@ -357,11 +555,12 @@ const EditProduct = () => {
             <Row>
               {/* Limit */}
               <div className="col-12">
-                <FloatingLabel controlId="floatingLimit" label="Limit">
+                <FloatingLabel controlId="floatingLimit" label="Capacity">
                   <Form.Control
                     type="number"
-                    placeholder="Limit"
-                    value={limit}
+                    placeholder="Capacity"
+                    defaultValue={product.Limit}
+                    // defaultValue={limit}
                     onChange={(e) => setField("limit", e.target.value.trim())}
                     required
                     isInvalid={!!errors.limit}
@@ -382,7 +581,8 @@ const EditProduct = () => {
                   <Form.Control
                     type="number"
                     placeholder="Price"
-                    value={price}
+                    defaultValue={product.Price}
+                    // defaultValue={price}
                     onChange={(e) => setField("price", e.target.value.trim())}
                     required
                     isInvalid={!!errors.price}
@@ -402,7 +602,9 @@ const EditProduct = () => {
                   <p className="text-center">Current Pict: </p>
                   <br />
                   <img
-                    src={photo}
+                    src={product.Url}
+                    alt="current product pict"
+                    v
                     style={{
                       width: "auto",
                       height: 300,
@@ -417,6 +619,7 @@ const EditProduct = () => {
                   {selectedFile && (
                     <img
                       src={preview}
+                      alt="latest product pict"
                       style={{
                         width: "auto",
                         height: 300,
