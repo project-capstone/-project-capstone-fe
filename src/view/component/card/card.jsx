@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
-import { Card,Button, Row, Col, Spinner } from "react-bootstrap";
+import { Card, Button, Row, Col, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import allStore from "../../../store/actions";
 import "./card.css";
 
-const CardProduct = () =>{
-    // const[loading, setLoading] = useState()
-    const loading = useSelector(({ loading }) => loading);
-    const dispatch = useDispatch();
-    const listProduct = useSelector(({listProduct}) => listProduct)
+const CardProduct = () => {
+  // const[loading, setLoading] = useState()
+  const loading = useSelector(({ loading }) => loading);
+  const dispatch = useDispatch();
+  const listProduct = useSelector(({ listProduct }) => listProduct);
 
+  useEffect(() => {
+    dispatch(allStore.fetchProduct());
+  }, [dispatch]);
     
-    useEffect(() =>{
-        dispatch(allStore.fetchProduct())
-    },[dispatch])
-    
- 
-    const navigate = useNavigate();
-    const toNavigate = (ProductsID) =>{
-        navigate(`/group/${ProductsID}`)
-        console.log(ProductsID, "idkjhkjb")
+
+  const navigate = useNavigate();
+  const toNavigate = (ID) => {
+    if (localStorage.getItem("role") === "admin") {
+      navigate(`/products/${ID}`);
+    } else {
+      navigate(`/group/${ID}`);
+      console.log(ID, "id");
     }
+  };
     
-    const Rupiah = Intl.NumberFormat("id-ID", {
+   const Rupiah = Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
     });
