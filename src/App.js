@@ -7,6 +7,7 @@ import AddProduct from './view/pages/addProduct/addProduct.jsx';
 import DetailProduct from './view/pages/detailProduct/detailProduct';
 import EditProduct from './view/pages/editProduct/editProduct';
 import GroupProduct from './view/component/grupCard/groupProduct';
+import Order from './view/pages/order/order';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/addproduct" element={<AddProduct/>} />
       <Route path="/products/:id" element={<DetailProduct/>} />
       <Route path="/editproducts/:id" element={<EditProduct/>} />
+      <Route path="/order/:ID" element={<Order/>} />
     </Routes>
     <Footer/>
   </BrowserRouter>  

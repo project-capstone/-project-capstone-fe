@@ -1,5 +1,4 @@
 import CardProduct from "../component/card/card"
-import allStore from "../../store/actions";
 
 import "./home.css"
 
