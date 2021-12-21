@@ -15,6 +15,7 @@ const CardProduct = () => {
     dispatch(allStore.fetchProduct());
   }, [dispatch]);
     
+
   const navigate = useNavigate();
   const toNavigate = (ID) => {
     if (localStorage.getItem("role") === "admin") {
@@ -31,8 +32,6 @@ const CardProduct = () => {
     });
   
     if(loading){
-        console.log(loading, "loadi")
-
         return(
             <div>
                 <div className="product" id="product"><h3 style={{color:"#0c6632"}}>Product</h3> <br/></div>

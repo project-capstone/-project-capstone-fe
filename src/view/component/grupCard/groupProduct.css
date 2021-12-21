@@ -32,7 +32,6 @@
 .statusAvaliable{
     width: 80px ;
     height: 30px;
-    background-color: rgba(153, 255, 158, 0.685);
     text-align: center;
 }
 .statusFull{
@@ -73,4 +72,8 @@
 .imgGroup img{
     width: 70px;
     border-radius: 10%;
+}
+.buttonOrder{
+    width: 100px;
+    bottom: 0px;
 }
