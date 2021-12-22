@@ -17,6 +17,8 @@ import {
 
 import { FaRegEdit } from "react-icons/fa";
 import "./detailProduct.css";
+import { useDispatch, useSelector } from "react-redux";
+import allStore from "../../../store/actions";
 
 //detailproduct for admin
 const DetailProduct = () => {
@@ -30,6 +32,13 @@ const DetailProduct = () => {
   const handleShowDel = () => setShowDel(true);
 
   const [product, setProduct] = useState({});
+
+  const groupProduct = useSelector(({groupProduct}) => groupProduct)
+  const dispatch = useDispatch();
+
+  const {id} = useParams()
+  console.log(id, "aa")
+
 
   const params = useParams();
   const navigate = useNavigate();
@@ -64,12 +73,28 @@ const DetailProduct = () => {
         console.log(product);
       })
       .catch((err) => {
-        console.log(err.data.Message);
+        console.log(err.data);
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
+
+// GET GROUP PRODUCT //
+  useEffect(() =>{
+    dispatch(allStore.fetchGroupProduct(id))
+  },[dispatch, id])
+console.log(groupProduct, "group")
+
+const filterGroup = groupProduct.filter(item => item.ProductsID === +id)
+console.log(filterGroup, "filter")
+filterGroup.sort(function(a,b) {
+  return parseFloat(b.ID) - parseFloat(a.ID)
+})
+
+const order = filterGroup.filter(item =>item.GetOrder )
+
+// GET GROUP PRODUCT //
 
   const handleDel = (e) => {
     e.preventDefault();
@@ -209,6 +234,69 @@ const DetailProduct = () => {
               </Card>
             </Row>
           </Container>
+            
+{/* ------------- DETAIL GROUP PRODUCT -------------------- */}
+            <div className="groupDetailProduct">
+              <div className="containerDetail">
+                <h3 style={{textAlign:"center", color: "#0c6632"}}>Subscribe Group</h3>
+                  <div className="contentDetail d-flex flex-wrap justify-content-beetwen">
+
+                      {filterGroup.map((el, i) =>{
+                        const status =() =>{
+                          if(el.Status === "Full"){
+                              console.log(el.Status, "aaaaaaaaa")
+                              return (
+                                  <div className="rounded-pill statusAvaliable" style={{backgroundColor:"red"}}>{el.Status}</div>
+                              )
+                          }else if(el.Status === "Available"){
+                              return(
+                                  <div className="rounded-pill statusAvaliable" style={{backgroundColor:"rgba(153, 255, 158, 0.685)"}}>{el.Status}</div>
+                              )
+                          }
+                      }
+
+                        return (
+
+                        <div className="CardGroupDetail mx-1 my-2" key={i}>
+                        <Row>
+                            <Col className="imgGroup">
+                            <img src={el.Url} alt="img"  style={{marginLeft:"2px"}}/>
+                            </Col>
+                            <Col>
+                             {status()}
+                            </Col>
+                        </Row>
+                        <h5 style={{textAlign:"center", paddingTop:"20px"}}>{el.NameGroupProduct}</h5>
+                        <hr style={{width:"200px" , margin:"0 auto", marginBottom:"10px"}}/>
+                        {order.map((el2,l) =>{
+                                        return (
+                                        <ul key={l}>  
+                                           {el2.GetOrder.map((el3, k) =>{
+                                               if(el.ID === el3.GroupProductID){
+                                                   return(
+                                                       <li className="listuser" key={k}>{el3.Name}</li>
+                                                   )
+                                               }else{
+                                                <li className="listuser" ></li>
+                                               }
+                                           })}
+                                            </ul>   
+                                        )
+                                        })}
+                        <div className="ButtonOrder">
+                        <Button variant="success" className="buttonOrder mt-1">INFO</Button>
+                        </div>
+                        </div>
+                        )
+                      })}
+
+{/* ------------- DETAIL GROUP PRODUCT -------------------- */}
+
+
+
+                  </div>
+              </div>
+            </div>
         </div>
 
         {/* Modal Delete Profile */}

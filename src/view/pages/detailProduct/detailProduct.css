@@ -43,3 +43,25 @@
   background-color: #f3f3f3;
   /* color: #dc3545; */
 }
+
+.groupDetailProduct{
+  width: 72vw;
+  margin: 0 auto;
+}
+.containerDetail{
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.contentDetail{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 71vw;
+}
+
+.CardGroupDetail{
+  width: 17.14vw ;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: -1px 4px 10px 4px rgb(206, 206, 206);
+}
