@@ -30,7 +30,9 @@ const GroupProduct =() =>{
     useEffect(() =>{
         dispatch(allStore.fetchGroupProduct(ProductsID))
     },[dispatch , ProductsID])
+    console.log(groupProduct, "group")
     const filterID = groupProduct.filter(item => item.ProductsID === +ProductsID);
+    console.log(filterID, "flilter")
     filterID.sort(function(a,b ){
         return parseFloat(b.ID) - parseFloat(a.ID)
     })
@@ -158,7 +160,7 @@ const GroupProduct =() =>{
                         }
                         return (
 
-                    <div className="CardGroup mx-1 my-2" key={i}>
+                     <div className="CardGroup mx-1 my-2" key={i}>
                         <Row>
                             <Col className="imgGroup">
                             <img src={el.Url} alt="img"  style={{marginLeft:"2px"}}/>
