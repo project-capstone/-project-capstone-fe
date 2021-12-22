@@ -33,3 +33,14 @@
   border: none;
   color: #0c6632;
 }
+
+.LoadingContainer {
+  width: 100vw;
+  height: 84vh;
+}
+.loadingCenter {
+  width: 200px;
+  height: 100px;
+  padding-top: 200px;
+  margin: 0 auto;
+}
