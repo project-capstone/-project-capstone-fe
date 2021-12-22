@@ -121,6 +121,11 @@ const Order =() =>{
                   <Form.Control.Feedback type="invalid">
                     {errors.phone}
                   </Form.Control.Feedback>
+                  <Form.Text className="text-muted">
+                    ex : 08123456789
+                    <br />
+                    
+                  </Form.Text>
                 </Form.Group>
             
                     </Col>
