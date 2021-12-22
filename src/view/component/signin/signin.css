@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-.modal-loading .spiner {
+.spiner {
   width: 35px;
   margin: 0 auto;
 }
