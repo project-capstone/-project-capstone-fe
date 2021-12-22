@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
 import axios from "axios";
@@ -64,8 +65,6 @@ const EditProduct = () => {
   };
 
   const [loading, setLoading] = useState(false);
-  const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
 
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
@@ -112,6 +111,7 @@ const EditProduct = () => {
     navigate(`/products/${ID}`);
   };
 
+  // get Detail Product
   useEffect(() => {
     const getAllDataUSer = () => {
       setLoading(true);
@@ -142,8 +142,10 @@ const EditProduct = () => {
         });
     };
     getAllDataUSer();
+    // eslint-disable-next-line
   }, []);
 
+  // setValue name_product, detail_product, price, limit same as the data obtained from the database
   useEffect(() => {
     if (!name_product || name_product === "" || name_product === undefined) {
       setField("name_product", product.Name_Product);
@@ -176,127 +178,10 @@ const EditProduct = () => {
     } else {
       console.log(limit);
     }
-  }, [name_product]);
+    // eslint-disable-next-line
+  }, [name_product, detail_product, price, limit]);
 
-  useEffect(() => {
-    if (!name_product || name_product === "" || name_product === undefined) {
-      setField("name_product", product.Name_Product);
-      console.log("data name kosong", product.Name_Product);
-    } else {
-      // console.log(product.Name_Product);
-      console.log(name_product);
-    }
-
-    if (
-      !detail_product ||
-      detail_product === "" ||
-      detail_product === undefined
-    ) {
-      setField("detail_product", product.Detail_Product);
-      console.log("data detail kosong", detail_product);
-    } else {
-      // console.log(product.Detail_Product);
-      console.log(detail_product);
-    }
-
-    if (!price || price === "" || price === undefined) {
-      setField("price", product.Price);
-      console.log("data price kosong", price);
-    } else {
-      // console.log(product.Price);
-      console.log(price);
-    }
-
-    if (!limit || limit === "" || limit === undefined) {
-      setField("limit", product.Limit);
-      console.log("data limit kosong", limit);
-    } else {
-      // console.log(product.Limit);
-      console.log(limit);
-    }
-    // console.log("detailnya: ", detail_product);
-  }, [detail_product]);
-
-  useEffect(() => {
-    if (!name_product || name_product === "" || name_product === undefined) {
-      setField("name_product", product.Name_Product);
-      // setField("name_product", localStorage.getItem("name_product"));
-      console.log("data name kosong", product.Name_Product);
-    } else {
-      // console.log(product.Name_Product);
-      console.log(name_product);
-    }
-
-    if (
-      !detail_product ||
-      detail_product === "" ||
-      detail_product === undefined
-    ) {
-      setField("detail_product", product.Detail_Product);
-      console.log("data detail kosong", detail_product);
-    } else {
-      // console.log(product.Detail_Product);
-      console.log(detail_product);
-    }
-
-    if (!price || price === "" || price === undefined) {
-      setField("price", product.Price);
-      console.log("data price kosong", price);
-    } else {
-      // console.log(product.Price);
-      console.log(price);
-    }
-
-    if (!limit || limit === "" || limit === undefined) {
-      setField("limit", product.Limit);
-      console.log("data limit kosong", limit);
-    } else {
-      // console.log(product.Limit);
-      console.log(limit);
-    }
-    // console.log("harganya: ", price);
-  }, [price]);
-
-  useEffect(() => {
-    if (!name_product || name_product === "" || name_product === undefined) {
-      setField("name_product", product.Name_Product);
-      // setField("name_product", localStorage.getItem("name_product"));
-      console.log("data name kosong", product.Name_Product);
-    } else {
-      // console.log(product.Name_Product);
-      console.log(name_product);
-    }
-
-    if (
-      !detail_product ||
-      detail_product === "" ||
-      detail_product === undefined
-    ) {
-      setField("detail_product", product.Detail_Product);
-      console.log("data detail kosong", detail_product);
-    } else {
-      // console.log(product.Detail_Product);
-      console.log(detail_product);
-    }
-
-    if (!price || price === "" || price === undefined) {
-      setField("price", product.Price);
-      console.log("data price kosong", price);
-    } else {
-      // console.log(product.Price);
-      console.log(price);
-    }
-
-    if (!limit || limit === "" || limit === undefined) {
-      setField("limit", product.Limit);
-      console.log("data limit kosong", limit);
-    } else {
-      // console.log(product.Limit);
-      console.log(limit);
-    }
-    // console.log("limitnya: ", limit);
-  }, [limit]);
-
+  // check if there is an empty form
   const handleCek = (e) => {
     e.preventDefault();
     const newErrors = findFormErrors();
@@ -310,9 +195,8 @@ const EditProduct = () => {
     }
   };
 
+  //if there is a form with an empty or undefined value
   const handleBlank = () => {
-    // e.preventDefault();
-
     const arr = ["name_product", "detail_product", "price", "limit"];
 
     for (let i = 0; i < arr.length; i++) {
@@ -380,6 +264,7 @@ const EditProduct = () => {
     let prices = parseInt(price);
     let limits = parseInt(limit);
 
+    // if the photo is not updated
     if (!foto || foto === "") {
       const data = new FormData();
       data.append("name_product", name_product);
@@ -424,7 +309,9 @@ const EditProduct = () => {
           }
         })
         .finally(() => setLoading(false));
-    } else {
+    }
+    // if the photo is updated
+    else {
       const data = new FormData();
       data.append("name_product", name_product);
       data.append("detail_product", detail_product);
@@ -472,30 +359,18 @@ const EditProduct = () => {
   };
 
   if (loading) {
-    console.log("INI LAGI LOADING!");
     return (
-      <Modal
-        className="p-5"
-        backdrop="static"
-        keyboard={false}
-        dialogClassName="col-7"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={show}
-        onHide={handleClose}
-      >
-        <Modal.Body className="p-5">
-          <div>
-            <h3 className="text-center" style={{ color: "#0c6632" }}>
-              Loading ...
-            </h3>
-            <div className="spiner">
-              <Spinner animation="border" variant="success" />
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <div className="LoadingContainer">
+        <div className="loadingCenter d-flex justify-content-center align-items-center">
+          <h3>
+            {" "}
+            <Spinner animation="grow" variant="success" /> Loading ...{" "}
+          </h3>
+        </div>
+      </div>
     );
+  } else if (localStorage.getItem("role") !== "admin") {
+    return <Navigate to="/" />;
   } else {
     return (
       <>
