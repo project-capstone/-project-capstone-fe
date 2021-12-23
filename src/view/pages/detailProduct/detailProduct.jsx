@@ -279,11 +279,12 @@ const DetailProduct = () => {
               <h3 style={{ textAlign: "center", color: "#0c6632" }}>
                 Subscribe Group
               </h3>
-              <div className="contentDetails d-flex flex-wrap justify-content-between">
+              
+              <div className="contentDetails d-flex flex-wrap ">
                 {filterGroup.map((el, i) => {
                   const status = () => {
                     if (el.Status === "Full") {
-                      console.log(el.Status, "aaaaaaaaa");
+                      // console.log(el.Status, "aaaaaaaaa");
                       return (
                         <div
                           className="rounded-pill statusAvaliables text-center"
@@ -305,7 +306,7 @@ const DetailProduct = () => {
                       );
                     }
                   };
-
+                
                   return (
                     <div className="CardGroupDetail mx-1 my-2" key={i}>
                       <Row>
