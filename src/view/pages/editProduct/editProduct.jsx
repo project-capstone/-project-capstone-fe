@@ -113,35 +113,37 @@ const EditProduct = () => {
 
   // get Detail Product
   useEffect(() => {
-    const getAllDataUSer = () => {
-      setLoading(true);
-      axios
-        .get(`https://barengin.site/products/${params.id}`)
-        .then(({ data }) => {
-          // console.log(data.Data);
+    if (localStorage.getItem("role") === "admin") {
+      const getAllDataUSer = () => {
+        setLoading(true);
+        axios
+          .get(`https://barengin.site/products/${params.id}`)
+          .then(({ data }) => {
+            // console.log(data.Data);
 
-          setProduct(data.Data);
+            setProduct(data.Data);
 
-          setField("name_product", product.Name_Product);
-          setField("detail_product", product.Detail_Product);
-          setField("price", product.Price);
-          setField("limit", product.Limit);
-          setField("photo", product.Url);
+            setField("name_product", product.Name_Product);
+            setField("detail_product", product.Detail_Product);
+            setField("price", product.Price);
+            setField("limit", product.Limit);
+            setField("photo", product.Url);
 
-          // setField("name_product", data.Data.Name_Product);
-          // setField("detail_product", data.Data.Detail_Product);
-          // setField("price", data.Data.Price);
-          // setField("limit", data.Data.Limit);
-          // setField("photo", data.Data.Url);
-        })
-        .catch((err) => {
-          console.log(err.data.Message);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    };
-    getAllDataUSer();
+            // setField("name_product", data.Data.Name_Product);
+            // setField("detail_product", data.Data.Detail_Product);
+            // setField("price", data.Data.Price);
+            // setField("limit", data.Data.Limit);
+            // setField("photo", data.Data.Url);
+          })
+          .catch((err) => {
+            console.log(err.data.Message);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      };
+      getAllDataUSer();
+    }
     // eslint-disable-next-line
   }, []);
 
