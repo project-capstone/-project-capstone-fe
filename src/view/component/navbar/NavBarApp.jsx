@@ -120,6 +120,15 @@ const NavBarApp = () => {
                 Add Product
               </Link>
             </NavDropdown.Item>
+            <NavDropdown.Item>
+              {" "}
+              <Link
+                to="/alluser"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                All User
+              </Link>
+            </NavDropdown.Item>
             <NavDropdown.Item
               onClick={() => {
                 logout();
