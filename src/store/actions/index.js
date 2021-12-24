@@ -5,6 +5,8 @@ import setError from "./setError.js";
 import { fetchGroupProduct, setGroupProducts } from "./groupProduct.js";
 import { postOrder,setOrder } from "./order.js";
 import { fetchGroupProductID, setGroupProductsID } from "./groupProductID.js";
+import {fetchUserOrder, setUserOrder} from './userOrder'
+import {fetchUser, setUser} from './user'
 
 const allStore = {
     postLogin,
@@ -18,7 +20,11 @@ const allStore = {
     setOrder,
     postOrder,
     fetchGroupProductID,
-    setGroupProductsID
+    setGroupProductsID,
+    fetchUserOrder, 
+    setUserOrder,
+    fetchUser,
+    setUser
 
   };
   

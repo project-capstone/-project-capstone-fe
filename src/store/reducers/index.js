@@ -5,6 +5,8 @@ import groupProduct from "./group-product-reduce.js";
 import loading from "./loading-reduce"
 import orderUser from "./order-reducer"
 import groupProductID from './group-product-id-reduce'
+import userOrder from './user-order-reducer'
+import user from './user-reducer'
 
 const rootReducers = combineReducers({
   login,
@@ -12,7 +14,9 @@ const rootReducers = combineReducers({
   groupProduct,
   loading,
   orderUser,
-  groupProductID
+  groupProductID,
+  userOrder,
+  user
   
 });
 
