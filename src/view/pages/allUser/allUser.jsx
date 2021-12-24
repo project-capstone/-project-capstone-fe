@@ -1,9 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import swal from "sweetalert";
 import axios from "axios";
-import { Tooltip, Modal, OverlayTrigger, Spinner, Row } from "react-bootstrap";
+import {  Spinner, Row } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
 import { CgFileDocument } from "react-icons/cg";
 import "./allUser.css";

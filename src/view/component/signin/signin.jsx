@@ -80,6 +80,8 @@ const SignIn = (props) => {
             localStorage.setItem("token", response.data.Data.Token);
             localStorage.setItem("name", response.data.Data.Name);
             localStorage.setItem("role", response.data.Data.Role);
+            localStorage.setItem("ID", response.data.Data.ID);
+
 
             goToHome();
           }

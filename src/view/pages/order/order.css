@@ -2,6 +2,8 @@
     background:rgba(236, 248, 243, 0.445);   
     width: 100vw;
     height: 84vh;
+    margin-bottom: 80px;
+
 
 }
 
@@ -9,18 +11,18 @@
     width: 70vw;
     height: 70vh;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 40px;
+
 }
 
 .orderDetail{
-    width: 40vw;
+    width: 630px;
     height:auto;
     border: 1px solid;
     border-radius:5px;
     margin: 0 auto;
 }
-.colM{
-}
+
 
 .detail{
     width: 30vw;

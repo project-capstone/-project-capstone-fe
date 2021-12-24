@@ -1,20 +1,38 @@
 import "./NavBarApp.css";
 import { NavDropdown, Navbar, Container, Nav } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import SignIn from "../signin/signin";
 import SignUp from "../signup/signup";
+import { useDispatch, useSelector } from "react-redux";
+import allStore from "../../../store/actions";
+import logo from './logo.png'
 
 const NavBarApp = () => {
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const {ID} = useParams()
+  const dispatch = useDispatch()
+
+  const user = useSelector(({user}) => user)
+
+  useEffect(() =>{
+    dispatch(allStore.fetchUser(ID))
+},[dispatch])
+// console.log(user.ID, "user")
+
 
   const navigate = useNavigate();
 
   const logout = () => {
-    navigate("/");
     localStorage.clear();
+    navigate("/");
+    window.location.reload()
   };
+
+  const toUser = () =>{
+    navigate(`/myorder`)
+  }
 
   const navbaractionpage = () => {
     if (
@@ -48,14 +66,12 @@ const NavBarApp = () => {
             }
             id="collasible-nav-dropdown"
           >
-            <NavDropdown.Item>
-              {" "}
-              <Link
-                to="/user"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                My Profile
-              </Link>
+              <NavDropdown.Item
+              onClick={() => {
+                toUser(ID);
+              }}
+            >
+              My Order
             </NavDropdown.Item>
             <NavDropdown.Item
               onClick={() => {
@@ -186,7 +202,7 @@ const NavBarApp = () => {
       <Navbar collapseOnSelect expand="lg" variant="light" className="colorNav">
         <Container>
           <Navbar.Brand href="/" className="title-icon">
-            <h2>Barengin</h2>
+            <img src={logo} alt="logo" width="200px"/>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

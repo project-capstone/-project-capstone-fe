@@ -7,7 +7,7 @@ export const fetchGroupProductID = (ID) =>{
         dispatch(allStore.setLoading(true))
         axios.get(`https://barengin.site/products/group/${ID}`)
         .then((data) =>{
-            console.log("masuk",data.data.Data);
+            // console.log("masuk",data.data.Data);
             dispatch(setGroupProductsID(data.data.Data))
         }).catch((err) =>{
             console.log(err);
