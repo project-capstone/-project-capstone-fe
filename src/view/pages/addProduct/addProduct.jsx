@@ -1,4 +1,5 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import swal from "sweetalert";
 import axios from "axios";
@@ -8,7 +9,6 @@ import {
   Form,
   FloatingLabel,
   Spinner,
-  Modal,
   Row,
   Col,
 } from "react-bootstrap";
@@ -19,11 +19,8 @@ const AddProduct = () => {
   const [errors, setErrors] = useState({});
 
   const [loading, setLoading] = useState(false);
-  const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
 
   const navigate = useNavigate();
-  const params = useParams();
 
   const goToHome = () => {
     navigate(`/`);
@@ -160,28 +157,17 @@ const AddProduct = () => {
   if (loading) {
     console.log("INI LAGI LOADING!");
     return (
-      <Modal
-        className="p-5"
-        backdrop="static"
-        keyboard={false}
-        dialogClassName="col-7"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={show}
-        onHide={handleClose}
-      >
-        <Modal.Body className="p-5">
-          <div>
-            <h3 className="text-center" style={{ color: "#0c6632" }}>
-              Loading ...
-            </h3>
-            <div className="spiner">
-              <Spinner animation="border" variant="success" />
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <div className="LoadingContainer">
+        <div className="loadingCenter">
+          <h3>
+            {" "}
+            <Spinner animation="grow" variant="success" /> Loading ...{" "}
+          </h3>
+        </div>
+      </div>
     );
+  } else if (localStorage.getItem("role") !== "admin") {
+    return <Navigate to="/" />;
   } else {
     return (
       <>
@@ -241,10 +227,10 @@ const AddProduct = () => {
             <Row>
               {/* Limit */}
               <div className="col-12">
-                <FloatingLabel controlId="floatingLimit" label="Limit">
+                <FloatingLabel controlId="floatingLimit" label="Capacity">
                   <Form.Control
                     type="number"
-                    placeholder="Limit"
+                    placeholder="Capacity"
                     onChange={(e) => setField("limit", e.target.value.trim())}
                     required
                     isInvalid={!!errors.limit}
@@ -283,6 +269,7 @@ const AddProduct = () => {
                 {selectedFile && (
                   <img
                     src={preview}
+                    alt="preview product"
                     style={{
                       width: "auto",
                       height: 300,

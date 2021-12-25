@@ -1,6 +1,5 @@
 import CardProduct from "../component/card/card"
-import allStore from "../../store/actions";
-
+import banner from "./banner.png"
 import "./home.css"
 
 
@@ -11,6 +10,7 @@ const Home = () => {
         <div className="HomeContainer">
         <div className="Containerbanner">
          <div className="banner"/>
+        {/* <img src={banner} alt="banner" /> */}
         </div>
         <div className="CardContainer"><CardProduct /></div>
         </div>

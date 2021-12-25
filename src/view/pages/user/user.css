@@ -1,0 +1,31 @@
+.ContainerUser{
+    width: 100vw;
+    background:rgba(236, 248, 243, 0.445);   
+    margin-bottom: 50px;
+}
+
+.history{
+   
+}
+.contentUser{
+    width: 70vw;
+    margin: 0 auto;
+}
+.titleUser{
+    padding-top: 30px;
+    padding-left: 10px;
+}
+.order{
+    width: 69vw;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: rgba(192, 192, 192, 0.8) 0 0 10px;
+    background-color: rgba(238, 252, 244, 0.267);
+
+}
+
+
+.thTable{
+    text-align: center;
+    vertical-align: middle;
+}
