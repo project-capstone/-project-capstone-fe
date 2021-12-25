@@ -1,22 +1,53 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
-import { Button, Modal, Form, FloatingLabel, Spinner } from "react-bootstrap";
+import { Button, Modal, Form, Row, Spinner, InputGroup } from "react-bootstrap";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import SignIn from "../signin/signin";
 import "./signup.css";
 
 const SignUp = (props) => {
   const [showSignin, setShowSignin] = useState(false);
-  // const [name, setName] = useState(" ");
-  // const [email, setEmail] = useState(" ");
-  // const [password, setPassword] = useState(" ");
-  // const [phone, setPhone] = useState(" ");
   const [loading, setLoading] = useState(false);
 
+  // ---------------------- SHOW PASSWORD -----------------------------------//
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+
+  const toogleChange = () => {
+    if (passwordShown) {
+      return (
+        <FaRegEyeSlash
+          id="inlineFormInputGroup"
+          // style={{ color: "#0c6632", cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
+          onClick={() => togglePassword()}
+        />
+      );
+    } else {
+      return (
+        <FaRegEye
+          id="inlineFormInputGroup"
+          // style={{ color: "#0c6632", cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
+          onClick={() => togglePassword()}
+        />
+      );
+    }
+  };
+  // ---------------------- END - SHOW PASSWORD ------------------------------//
+
+  // ---------------------- FORM + VALIDATION --------------------------------//
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const { name, email, password, phone } = form;
 
+  // SetState Form
   const setField = (field, value) => {
     setForm({
       ...form,
@@ -30,6 +61,7 @@ const SignUp = (props) => {
       });
   };
 
+  // Check Error
   const findFormErrors = () => {
     const newErrors = {};
     const regexEmail =
@@ -52,6 +84,7 @@ const SignUp = (props) => {
 
     return newErrors;
   };
+  // ---------------------- END - FORM + VALIDATION --------------------------------//
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -94,9 +127,8 @@ const SignUp = (props) => {
   };
 
   const Modalregister = () => {
-    if(loading){
-      console.log(loading, "regis")
-
+    if (loading) {
+      console.log(loading, "regis");
       return (
         <Modal
           className="modal p-5"
@@ -127,7 +159,7 @@ const SignUp = (props) => {
           className="modal p-5"
           backdrop="static"
           keyboard={false}
-          dialogClassName="col-7"
+          dialogClassName="col-8"
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={props.show}
@@ -139,71 +171,94 @@ const SignUp = (props) => {
                 Create Account
               </h3>
               <Form.Group className="mb-2">
-                <FloatingLabel label="Name" className="mb-3 mt-3">
-                  <Form.Control
-                    type="text"
-                    placeholder="Name"
-                    onChange={(e) => setField("name", e.target.value.trim())}
-                    required
-                    isInvalid={!!errors.name}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.name}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
+                <Form.Label>
+                  Name<sup>*</sup>
+                </Form.Label>
+                {/* <FloatingLabel label="Name" className="mb-3 mt-3"> */}
+                <Form.Control
+                  type="text"
+                  placeholder="Name"
+                  autoComplete="off"
+                  onChange={(e) => setField("name", e.target.value.trim())}
+                  required
+                  isInvalid={!!errors.name}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.name}
+                </Form.Control.Feedback>
+                {/* </FloatingLabel> */}
               </Form.Group>
 
               <Form.Group className="mb-2">
-                <FloatingLabel label="Email" className="mb-3 mt-3">
-                  <Form.Control
-                    type="email"
-                    placeholder="Email"
-                    onChange={(e) => setField("email", e.target.value.trim())}
-                    required
-                    isInvalid={!!errors.email}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
+                <Form.Label>
+                  Email<sup>*</sup>
+                </Form.Label>
+                {/* <FloatingLabel label="Email" className="mb-3 mt-3"> */}
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  onChange={(e) => setField("email", e.target.value.trim())}
+                  required
+                  isInvalid={!!errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+                {/* </FloatingLabel> */}
               </Form.Group>
 
+              {/* Form Password */}
               <Form.Group className="mb-2">
-                <FloatingLabel label="Password" className="mb-3 mt-3">
+                <Form.Label>
+                  Password<sup>*</sup>
+                </Form.Label>
+                <InputGroup>
                   <Form.Control
-                    type="password"
-                    placeholder="Password"
+                    id="inlineFormInputGroup"
+                    type={passwordShown ? "text" : "password"}
+                    autoComplete="none"
                     onChange={(e) =>
                       setField("password", e.target.value.trim())
                     }
+                    placeholder="Password"
                     required
                     isInvalid={!!errors.password}
                   />
+                  <InputGroup.Text>{toogleChange()}</InputGroup.Text>
+
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
                   </Form.Control.Feedback>
-                </FloatingLabel>
+                </InputGroup>
               </Form.Group>
 
-              <Form.Group className="mb-2">
-                <FloatingLabel label="Phone Number" className="mb-3 mt-3">
-                  <Form.Control
-                    type="text"
-                    placeholder="Phone Number"
-                    onChange={(e) => setField("phone", e.target.value.trim())}
-                    required
-                    isInvalid={!!errors.phone}
-                  />
-                  <Form.Text className="text-muted">
-                    format phone : country code + phone number
-                    <br />
-                    628123456789
-                  </Form.Text>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.phone}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
+              <Form.Group className="mb-3">
+                <Form.Label>
+                  Phone Number<sup>*</sup>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Phone Number ex: 62XXXXXXXXX"
+                  autoComplete="off"
+                  onChange={(e) => setField("phone", e.target.value.trim())}
+                  required
+                  isInvalid={!!errors.phone}
+                />
+
+                <Form.Control.Feedback type="invalid">
+                  {errors.phone}
+                </Form.Control.Feedback>
+                <h7>format phone : country code + phone number</h7>
+                {/* <br />
+                <h7>628123456789</h7> */}
               </Form.Group>
+
+              <Row className="d-flex mb-3">
+                <h6>
+                  <sup>* Required</sup>
+                </h6>
+              </Row>
 
               <div className="divButton mt-3 d-flex justify-content-between align-items-center">
                 <Button
@@ -244,3 +299,4 @@ const SignUp = (props) => {
 };
 
 export default SignUp;
+
