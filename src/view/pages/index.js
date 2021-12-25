@@ -1,5 +1,6 @@
 import CardProduct from "../component/card/card"
-import banner from "./banner.png"
+import Banner from "../component/bannerHome/banner"
+import ScrollButton from "../component/scrollButton/scroll"
 import "./home.css"
 
 
@@ -9,10 +10,10 @@ const Home = () => {
         <>
         <div className="HomeContainer">
         <div className="Containerbanner">
-         <div className="banner"/>
-        {/* <img src={banner} alt="banner" /> */}
+         <div className="banner"><Banner /></div>
         </div>
         <div className="CardContainer"><CardProduct /></div>
+        <ScrollButton />
         </div>
         </>
 
