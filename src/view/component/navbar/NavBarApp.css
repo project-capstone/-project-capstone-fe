@@ -1,12 +1,15 @@
-.colorNav{
-    /* background-color: red; */
-    background-color: rgb(255, 255, 255) !important;
-    font-size: 24px;
-    box-shadow: 0px 2px rgb(223, 248, 229);
-
+.colorNav {
+  /* background-color: red; */
+  background-color: rgb(255, 255, 255) !important;
+  font-size: 24px;
+  box-shadow: 0px 2px rgb(223, 248, 229);
 }
 
-.title-icon{
-    color: #0c6632 !important;
-    
+.title-icon {
+  color: #0c6632 !important;
+}
+
+#collasible-nav-dropdown {
+  display: flex;
+  align-items: center;
 }
