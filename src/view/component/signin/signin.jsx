@@ -1,27 +1,58 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
-import { Button, Modal, Form, FloatingLabel, Spinner } from "react-bootstrap";
+import { Button, Modal, Form, Spinner, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-// import SignUp from "../signup/signup";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import "./signin.css";
 
 export let token = "";
 
 const SignIn = (props) => {
-  // const [showSignup, setShowSignup] = useState(false);
-
+  // ---------------------- NAVIGATE -----------------------------------//
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/");
   };
 
+  const [loading, setLoading] = useState(false);
+
+  // ---------------------- SHOW PASSWORD -----------------------------------//
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+
+  const toogleChange = () => {
+    if (passwordShown) {
+      return (
+        <FaRegEyeSlash
+          id="inlineFormInputGroup"
+          // style={{ color: "#0c6632", cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
+          onClick={() => togglePassword()}
+        />
+      );
+    } else {
+      return (
+        <FaRegEye
+          id="inlineFormInputGroup"
+          // style={{ color: "#0c6632", cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
+          onClick={() => togglePassword()}
+        />
+      );
+    }
+  };
+  // ---------------------- END - SHOW PASSWORD ------------------------------//
+
+  // ---------------------- FORM + VALIDATION --------------------------------//
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-
   const { email, password } = form;
-
-  const [loading, setLoading] = useState(false);
 
   const setField = (field, value) => {
     setForm({
@@ -51,7 +82,9 @@ const SignIn = (props) => {
     else if (password.length < 6) newErrors.password = "password is too short!";
     return newErrors;
   };
+  // --------------------- END - FORM + VALIDATION -----------------------------//
 
+  // --------------------------- LOGIN -----------------------------------------//
   const handleSignIn = (e) => {
     e.preventDefault();
 
@@ -80,11 +113,12 @@ const SignIn = (props) => {
             localStorage.setItem("token", response.data.Data.Token);
             localStorage.setItem("name", response.data.Data.Name);
             localStorage.setItem("role", response.data.Data.Role);
+            localStorage.setItem("ID", response.data.Data.ID);
 
             goToHome();
           }
 
-          console.log(response.data.Data.Token);
+          console.log(response.data.Data);
         })
         .catch((err) => {
           if (err) {
@@ -104,6 +138,7 @@ const SignIn = (props) => {
       }
     }
   };
+  // ------------------------- END-LOGIN ---------------------------------------//
 
   if (loading) {
     console.log(loading, "sign in");
@@ -137,33 +172,38 @@ const SignIn = (props) => {
           className="modal"
           backdrop="static"
           keyboard={false}
-          dialogClassName="col-7"
+          dialogClassName="col-8"
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={props.show}
         >
           <Modal.Body className="modal-signin p-5">
             <div>
-              <h3 className="text-center mb-4">SignIn</h3>
-              <Form.Group className="mb-2">
-                <FloatingLabel label="Email" className="mb-3 mt-3">
-                  <Form.Control
-                    type="email"
-                    placeholder="Email"
-                    onChange={(e) => setField("email", e.target.value.trim())}
-                    required
-                    isInvalid={!!errors.email}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
+              <h3 className="text-center mb-4">Sign In</h3>
+              {/* Form Email */}
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  onChange={(e) => setField("email", e.target.value.trim())}
+                  required
+                  isInvalid={!!errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
               </Form.Group>
 
+              {/* Form Password */}
               <Form.Group className="mb-2">
-                <FloatingLabel label="Password" className="mb-3 mt-3">
+                <Form.Label>Password</Form.Label>
+                <InputGroup>
                   <Form.Control
-                    type="password"
+                    id="inlineFormInputGroup"
+                    type={passwordShown ? "text" : "password"}
+                    autoComplete="off"
                     onChange={(e) =>
                       setField("password", e.target.value.trim())
                     }
@@ -171,10 +211,12 @@ const SignIn = (props) => {
                     required
                     isInvalid={!!errors.password}
                   />
+                  <InputGroup.Text>{toogleChange()}</InputGroup.Text>
+
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
                   </Form.Control.Feedback>
-                </FloatingLabel>
+                </InputGroup>
               </Form.Group>
 
               <div className="divButton mt-4 d-flex justify-content-between align-items-center">
@@ -188,26 +230,15 @@ const SignIn = (props) => {
 
                 <Button
                   className="col btSignIn"
-                  variant="primary"
+                  variant="success"
                   onClick={handleSignIn}
                 >
                   SignIn
                 </Button>
               </div>
-              {/* <div className="divSignUp mt-3 d-flex justify-content-center align-items-center">
-              <p className="me-2">New User ?</p>
-              <p
-                onClick={() => setShowSignup(true) & props.close()}
-                className="toSignUp"
-              >
-                Sign Up
-              </p>
-            </div> */}
             </div>
           </Modal.Body>
         </Modal>
-
-        {/* <SignUp show={showSignup} close={() => setShowSignup(false)} /> */}
       </>
     );
   }
