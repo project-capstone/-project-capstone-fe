@@ -14,7 +14,7 @@
   border-bottom: 1px solid black;
 }
 
-.BaseContainer .newProduct {
+.BaseContainer .editProduct {
   width: 70vw;
   margin: 0 auto;
   /* margin-top: 30px; */
@@ -36,8 +36,9 @@
 
 .LoadingContainer {
   width: 100vw;
-  height: 84vh;
+  height: 100vh;
 }
+
 .loadingCenter {
   width: 200px;
   height: 100px;

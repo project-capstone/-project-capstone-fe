@@ -48,7 +48,7 @@ const SignIn = (props) => {
       newErrors.email = "email is not valid!";
     // password errors
     if (!password || password === "") newErrors.password = "cannot be blank!";
-    else if (password.length < 4) newErrors.password = "comment is too short!";
+    else if (password.length < 6) newErrors.password = "password is too short!";
     return newErrors;
   };
 
@@ -80,9 +80,13 @@ const SignIn = (props) => {
             localStorage.setItem("token", response.data.Data.Token);
             localStorage.setItem("name", response.data.Data.Name);
             localStorage.setItem("role", response.data.Data.Role);
+            localStorage.setItem("ID", response.data.Data.ID);
+
 
             goToHome();
           }
+
+          console.log(response.data.Data.Token);
         })
         .catch((err) => {
           if (err) {
@@ -104,10 +108,10 @@ const SignIn = (props) => {
   };
 
   if (loading) {
-    console.log("INI LOADING!");
+    console.log(loading, "sign in");
     return (
       <Modal
-        className="p-5"
+        className="modal p-5"
         backdrop="static"
         keyboard={false}
         dialogClassName="col-7"
@@ -116,8 +120,11 @@ const SignIn = (props) => {
         show={props.show}
         cancel={props.close}
       >
-        <Modal.Body className="modal-loading p-5">
+        <Modal.Body className="modal-signin p-5">
           <div>
+            <h3 className="text-center" style={{ color: "#0c6632" }}>
+              Login
+            </h3>
             <div className="spiner">
               <Spinner animation="border" variant="success" />
             </div>
@@ -125,70 +132,71 @@ const SignIn = (props) => {
         </Modal.Body>
       </Modal>
     );
-  }
+  } else {
+    return (
+      <>
+        <Modal
+          className="modal"
+          backdrop="static"
+          keyboard={false}
+          dialogClassName="col-7"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={props.show}
+        >
+          <Modal.Body className="modal-signin p-5">
+            <div>
+              <h3 className="text-center mb-4">SignIn</h3>
+              <Form.Group className="mb-2">
+                <FloatingLabel label="Email" className="mb-3 mt-3">
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    onChange={(e) => setField("email", e.target.value.trim())}
+                    required
+                    isInvalid={!!errors.email}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+              </Form.Group>
 
-  return (
-    <>
-      <Modal
-        className="modal"
-        backdrop="static"
-        keyboard={false}
-        dialogClassName="col-7"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={props.show}
-      >
-        <Modal.Body className="modal-signin p-5">
-          <div>
-            <h3 className="text-center mb-4">SignIn</h3>
-            <Form.Group className="mb-2">
-              <FloatingLabel label="Email" className="mb-3 mt-3">
-                <Form.Control
-                  type="email"
-                  placeholder="Email"
-                  onChange={(e) => setField("email", e.target.value.trim())}
-                  required
-                  isInvalid={!!errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </FloatingLabel>
-            </Form.Group>
+              <Form.Group className="mb-2">
+                <FloatingLabel label="Password" className="mb-3 mt-3">
+                  <Form.Control
+                    type="password"
+                    onChange={(e) =>
+                      setField("password", e.target.value.trim())
+                    }
+                    placeholder="Password"
+                    required
+                    isInvalid={!!errors.password}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+              </Form.Group>
 
-            <Form.Group className="mb-2">
-              <FloatingLabel label="Password" className="mb-3 mt-3">
-                <Form.Control
-                  type="password"
-                  onChange={(e) => setField("password", e.target.value.trim())}
-                  placeholder="Password"
-                  required
-                  isInvalid={!!errors.password}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.password}
-                </Form.Control.Feedback>
-              </FloatingLabel>
-            </Form.Group>
+              <div className="divButton mt-4 d-flex justify-content-between align-items-center">
+                <Button
+                  className="me-2 col btCancel"
+                  variant="secondary"
+                  onClick={props.close}
+                >
+                  Cancel
+                </Button>
 
-            <div className="divButton mt-4 d-flex justify-content-between align-items-center">
-              <Button
-                className="me-2 col btCancel"
-                variant="secondary"
-                onClick={props.close}
-              >
-                Cancel
-              </Button>
-
-              <Button
-                className="col btSignIn"
-                variant="primary"
-                onClick={handleSignIn}
-              >
-                SignIn
-              </Button>
-            </div>
-            {/* <div className="divSignUp mt-3 d-flex justify-content-center align-items-center">
+                <Button
+                  className="col btSignIn"
+                  variant="primary"
+                  onClick={handleSignIn}
+                >
+                  SignIn
+                </Button>
+              </div>
+              {/* <div className="divSignUp mt-3 d-flex justify-content-center align-items-center">
               <p className="me-2">New User ?</p>
               <p
                 onClick={() => setShowSignup(true) & props.close()}
@@ -197,13 +205,14 @@ const SignIn = (props) => {
                 Sign Up
               </p>
             </div> */}
-          </div>
-        </Modal.Body>
-      </Modal>
+            </div>
+          </Modal.Body>
+        </Modal>
 
-      {/* <SignUp show={showSignup} close={() => setShowSignup(false)} /> */}
-    </>
-  );
+        {/* <SignUp show={showSignup} close={() => setShowSignup(false)} /> */}
+      </>
+    );
+  }
 };
 
 export default SignIn;

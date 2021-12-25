@@ -5,9 +5,10 @@
 }
 
 .groupContent{
-    width: 71vw;
+    width: 74vw;
     height: auto;
     background:rgba(236, 248, 243, 0.445);   
+    padding-bottom: 160px;
     margin: 0 auto;
     padding-top: 20px;
 }
@@ -19,7 +20,7 @@
 
 .fieldProduct{
     margin-bottom: 40px;
-    width: 71vw;
+    width: 74vw;
 }
 
 .CardGroup{
@@ -31,7 +32,6 @@
 .statusAvaliable{
     width: 80px ;
     height: 30px;
-    background-color: rgba(153, 255, 158, 0.685);
     text-align: center;
 }
 .statusFull{
@@ -59,4 +59,21 @@
 .listuser{
     font-weight: 500;
     font-size: 15px;
+}
+.loadGroup{
+    width: 200px;
+    height: 40.5vh;
+    padding-top: 140px;
+    margin: 0 auto;
+    color: #0c6632;
+
+}
+
+.imgGroup img{
+    width: 70px;
+    border-radius: 10%;
+}
+.buttonOrder{
+    width: 100px;
+    bottom: 0px;
 }

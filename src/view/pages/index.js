@@ -1,29 +1,18 @@
 import CardProduct from "../component/card/card"
-import {useDispatch,useSelector} from 'react-redux'
-import React, {useEffect, useState} from "react"
-import allStore from "../../store/actions";
-
+import banner from "./banner.png"
 import "./home.css"
 
 
 const Home = () => {
-    const dispatch = useDispatch();
-    const listProduct = useSelector(({listProduct}) => listProduct)
-
-    
-
-    useEffect(() =>{
-        dispatch(allStore.fetchProduct())
-    },[dispatch])
-
-   
+  
     return(
         <>
         <div className="HomeContainer">
         <div className="Containerbanner">
          <div className="banner"/>
+        {/* <img src={banner} alt="banner" /> */}
         </div>
-        <div className="CardContainer"><CardProduct listProduct={listProduct}/></div>
+        <div className="CardContainer"><CardProduct /></div>
         </div>
         </>
 

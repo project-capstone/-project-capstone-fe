@@ -14,7 +14,7 @@
   border-bottom: 1px solid black;
 }
 
-.BaseContainer .newProduct {
+.BaseContainer .allUser {
   width: 70vw;
   margin: 0 auto;
   /* margin-top: 30px; */
@@ -22,16 +22,19 @@
   /* border-bottom: 1px solid black; */
 }
 
-.confirm {
-  background-color: #0c6632;
-  border: none;
-  color: white;
+.title-table {
+  width: 70vw;
+  margin: 0 auto;
+  /* margin-bottom: 30px; */
+  border-bottom: 1px solid black;
 }
 
-.confirm:hover {
-  background-color: #39f5a3;
-  border: none;
-  color: #0c6632;
+.BaseContainer .allUser .content-table {
+  width: 70vw;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-bottom: 1px solid black;
 }
 
 .LoadingContainer {

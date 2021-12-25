@@ -8,4 +8,20 @@
     margin: 0 auto;
     margin-top: 30px;
     border-bottom: 1px solid black;
+    
+}
+.imgProduct{
+    height: 180px !important;
+}
+
+.loadProduct{
+    width: 60vw;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+    color: #0c6632;
+}
+.cardProduct{
+    margin-bottom: 70px;
 }
