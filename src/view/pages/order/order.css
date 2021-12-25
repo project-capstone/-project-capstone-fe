@@ -1,0 +1,58 @@
+.OrderContainer{
+    background:rgba(236, 248, 243, 0.445);   
+    width: 100vw;
+    height: 84vh;
+    margin-bottom: 80px;
+
+
+}
+
+.content{
+    width: 70vw;
+    height: 70vh;
+    margin: 0 auto;
+    padding-top: 40px;
+
+}
+
+.orderDetail{
+    width: 630px;
+    height:auto;
+    border: 1px solid;
+    border-radius:5px;
+    margin: 0 auto;
+}
+
+
+.detail{
+    width: 30vw;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+.isiDetail{
+    text-align: start;
+    margin-left: 20px;
+}
+.iconDetail{
+    margin: 0 auto;
+    width: 200px;
+}
+
+.formPhone{
+    padding-top: 10px;
+    margin-top: -10px;
+}
+.isian{
+    height: 40px !important;
+}
+
+.LoadingOrderContainer{
+    width: 100vw;
+    height: 84vh;
+}
+.loadingCenter{
+    width: 200px;
+    height: 100px;
+    padding-top: 200px;
+    margin: 0 auto;
+}

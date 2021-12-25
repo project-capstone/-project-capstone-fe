@@ -1,0 +1,49 @@
+.BaseContainer {
+  background: rgba(236, 248, 243, 0.445);
+  width: 80vw;
+  margin: 0 auto;
+  height: auto;
+  padding-top: 20px;
+}
+
+.BaseContainer .title {
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
+}
+
+.BaseContainer .allUser {
+  width: 70vw;
+  margin: 0 auto;
+  /* margin-top: 30px; */
+  margin-bottom: 50px;
+  /* border-bottom: 1px solid black; */
+}
+
+.title-table {
+  width: 70vw;
+  margin: 0 auto;
+  /* margin-bottom: 30px; */
+  border-bottom: 1px solid black;
+}
+
+.BaseContainer .allUser .content-table {
+  width: 70vw;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-bottom: 1px solid black;
+}
+
+.LoadingContainer {
+  width: 100vw;
+  height: 84vh;
+}
+.loadingCenter {
+  width: 200px;
+  height: 100px;
+  padding-top: 200px;
+  margin: 0 auto;
+}

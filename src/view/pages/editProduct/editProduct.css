@@ -1,0 +1,47 @@
+.BaseContainer {
+  background: rgba(236, 248, 243, 0.445);
+  width: 80vw;
+  margin: 0 auto;
+  height: auto;
+  padding-top: 20px;
+}
+
+.BaseContainer .title {
+  width: 70vw;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid black;
+}
+
+.BaseContainer .editProduct {
+  width: 70vw;
+  margin: 0 auto;
+  /* margin-top: 30px; */
+  margin-bottom: 50px;
+  /* border-bottom: 1px solid black; */
+}
+
+.confirm {
+  background-color: #0c6632;
+  border: none;
+  color: white;
+}
+
+.confirm:hover {
+  background-color: #39f5a3;
+  border: none;
+  color: #0c6632;
+}
+
+.LoadingContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.loadingCenter {
+  width: 200px;
+  height: 100px;
+  padding-top: 200px;
+  margin: 0 auto;
+}

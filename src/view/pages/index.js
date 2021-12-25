@@ -1,21 +1,19 @@
 import CardProduct from "../component/card/card"
-import Footer from "../component/footer/footer"
-import NavBarApp from "../component/navbar/NavBarApp"
+import banner from "./banner.png"
 import "./home.css"
 
+
 const Home = () => {
+  
     return(
         <>
-        <NavBarApp/>
         <div className="HomeContainer">
         <div className="Containerbanner">
-            <div className="banner"> 
-           
-            </div>
+         <div className="banner"/>
+        {/* <img src={banner} alt="banner" /> */}
         </div>
-        <div className="CardContainer"><CardProduct/></div>
+        <div className="CardContainer"><CardProduct /></div>
         </div>
-        <Footer/>
         </>
 
     )

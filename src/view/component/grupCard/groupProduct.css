@@ -1,0 +1,79 @@
+.groupProductContainer{
+    width: 100vw;
+    /* background-color: red; */
+    height: auto;
+}
+
+.groupContent{
+    width: 74vw;
+    height: auto;
+    background:rgba(236, 248, 243, 0.445);   
+    padding-bottom: 160px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.titleProduct{
+    /* background-color: royalblue; */
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.fieldProduct{
+    margin-bottom: 40px;
+    width: 74vw;
+}
+
+.CardGroup{
+    width: 17.14vw ;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: -1px 4px 10px 4px rgb(206, 206, 206);
+}
+.statusAvaliable{
+    width: 80px ;
+    height: 30px;
+    text-align: center;
+}
+.statusFull{
+    width: 60px ;
+    height: 30px;
+    background-color: rgba(247, 108, 119, 0.685);
+    text-align: center;
+}
+
+.b{
+    background-color: indigo;
+}
+.aaa{
+    background-color: hotpink;
+}
+
+.list{
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+.ButtonOrder{
+    width: 100px;
+    margin: 0 auto;
+}
+
+.listuser{
+    font-weight: 500;
+    font-size: 15px;
+}
+.loadGroup{
+    width: 200px;
+    height: 40.5vh;
+    padding-top: 140px;
+    margin: 0 auto;
+    color: #0c6632;
+
+}
+
+.imgGroup img{
+    width: 70px;
+    border-radius: 10%;
+}
+.buttonOrder{
+    width: 100px;
+    bottom: 0px;
+}
