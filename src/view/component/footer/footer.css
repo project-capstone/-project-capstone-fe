@@ -1,6 +1,28 @@
-.footer{
-    background-color: rgba(3, 3, 3, 0.849) !important;
-    height: 10vh;
-    color: rgb(255, 255, 255);
-    text-align: center;
+.footer {
+  background-color: #182943 !important;
+  height: auto;
+  color: rgb(255, 255, 255);
+  /* text-align: center; */
+  /* white-space: nowrap; */
+  /* width: 100%; */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+}
+
+#h6 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#h1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.footer-2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
