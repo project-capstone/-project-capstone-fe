@@ -1,12 +1,4 @@
-import {
-  Button,
-  InputGroup,
-  Form,
-  Image,
-  Row,
-  Col,
-  Container,
-  Carousel,
+import { Carousel,
 } from "react-bootstrap";
 
 import banner1 from "../../../image/banner-1.png";

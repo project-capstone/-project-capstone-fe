@@ -20,7 +20,7 @@ const CardProduct = () => {
   const toNavigate = (ID) => {
     if (localStorage.getItem("role") === "admin") {
       navigate(`/products/${ID}`);
-      console.log(ID, "po")
+      // console.log(ID, "po")
     } else {
       navigate(`/group/${ID}`);
       console.log(ID, "id");

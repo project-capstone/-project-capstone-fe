@@ -101,14 +101,14 @@ const SignUp = (props) => {
         password,
         phone: "+" + phone,
       };
-      console.log(name, email, password, phone);
+      // console.log(name, email, password, phone);
 
       setLoading(true);
 
       axios
         .post("https://barengin.site/signup", body)
         .then((data) => {
-          console.log(data, "succes");
+          // console.log(data, "succes");
           props.close();
           swal({
             text: "succes register",
@@ -128,7 +128,7 @@ const SignUp = (props) => {
 
   const Modalregister = () => {
     if (loading) {
-      console.log(loading, "regis");
+      // console.log(loading, "regis");
       return (
         <Modal
           className="modal p-5"

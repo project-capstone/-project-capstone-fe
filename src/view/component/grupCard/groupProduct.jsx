@@ -48,7 +48,7 @@ const GroupProduct =() =>{
         setLoad(true)
         axios.post(`https://barengin.site/jwt/products/group/${ProductsID}`,body,config)
         .then((data) =>{
-            console.log(data, "succes")
+            // console.log(data, "succes")
             swal({
               text:"success add group product",
               icon : "success"});
@@ -136,7 +136,7 @@ const GroupProduct =() =>{
                     {filterID.map((el, i) => {
                         const status =() =>{
                             if(el.Status === "Full"){
-                                console.log(el.Status, "aaaaaaaaa")
+                                // console.log(el.Status, "aaaaaaaaa")
                                 return (
                                     <div className="rounded-pill statusAvaliable" style={{backgroundColor:"red"}}>{el.Status}</div>
                                 )

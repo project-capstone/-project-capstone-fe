@@ -12,25 +12,20 @@ import logo from "../../../image/logo.png";
 const NavBarApp = () => {
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const {ID} = useParams()
   const dispatch = useDispatch()
+  const { ID } = useParams();
 
   const user = useSelector(({user}) => user)
 
   useEffect(() =>{
     dispatch(allStore.fetchUser(ID))
-},[dispatch])
+},[dispatch, ID])
 // console.log(user.ID, "user")
 
 
-  const { ID } = useParams();
-  const dispatch = useDispatch();
-
-  const user = useSelector(({ user }) => user);
-
   useEffect(() => {
     dispatch(allStore.fetchUser(ID));
-  }, [dispatch]);
+  }, [dispatch, ID]);
   // console.log(user.ID, "user")
 
   const navigate = useNavigate();
@@ -43,9 +38,6 @@ const NavBarApp = () => {
     navigate(`/myorder`);
   };
 
-  const toUser = () =>{
-    navigate(`/myorder`)
-  }
 
   const navbaractionpage = () => {
     if (

@@ -118,7 +118,7 @@ const SignIn = (props) => {
             goToHome();
           }
 
-          console.log(response.data.Data);
+          // console.log(response.data.Data);
         })
         .catch((err) => {
           if (err) {
@@ -141,7 +141,7 @@ const SignIn = (props) => {
   // ------------------------- END-LOGIN ---------------------------------------//
 
   if (loading) {
-    console.log(loading, "sign in");
+    // console.log(loading, "sign in");
     return (
       <Modal
         className="modal p-5"
