@@ -249,7 +249,7 @@ const DetailGroupProduct = () => {
 
           <div
             className="rounded-pill status d-flex justify-content-center align-items-end"
-            style={{ backgroundColor: "red" }}
+            style={{backgroundColor:"red", color:"white",fontWeight:"500"}}
           >
             {product.Status}
           </div>
@@ -488,9 +488,8 @@ const DetailGroupProduct = () => {
 
           <div
             className="rounded-pill status d-flex justify-content-center "
-            style={{
-              backgroundColor: "rgba(153, 255, 158, 0.685)",
-            }}
+            style={{backgroundColor:"rgba(153, 255, 158, 0.685)", fontWeight:"500"}}
+
           >
             {product.Status}
           </div>

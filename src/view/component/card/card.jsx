@@ -23,7 +23,7 @@ const CardProduct = () => {
       // console.log(ID, "po")
     } else {
       navigate(`/group/${ID}`);
-      console.log(ID, "id");
+      // console.log(ID, "id");
     }
   };
     
