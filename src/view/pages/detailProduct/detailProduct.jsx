@@ -299,8 +299,8 @@ const DetailProduct = () => {
                           className="rounded statusAvaliables text-center"
                           style={{
                             // backgroundColor: "rgba(153, 255, 158, 0.685)",
-                            backgroundColor: "limegreen",
-                            color: "white",
+                            backgroundColor: "rgba(153, 255, 158, 0.685)",
+                            color: "black",
                           }}
                         >
                           {el.Status}

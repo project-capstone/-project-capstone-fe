@@ -15,10 +15,7 @@ const Footer = () => {
             <Col xs={9} md={9} lg={9} sm={9} className="mt-5 mb-5">
               <h3>About Us</h3>
               <h6>
-                Barengin is a platform that serves as a forum for prospective
-                customers who wants to subscribe to a certain digital products
-                in a joint venture with other prospective customers to gain
-                premium services benefit.
+              Barengin is a platform that offers a sharing system for customers in subscripting digital products to gain various benefits.
               </h6>
             </Col>
 
