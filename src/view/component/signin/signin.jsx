@@ -115,6 +115,10 @@ const SignIn = (props) => {
             localStorage.setItem("role", response.data.Data.Role);
             localStorage.setItem("ID", response.data.Data.ID);
 
+            if (props.close) {
+              props.close();
+            }
+
             goToHome();
           }
 
@@ -132,10 +136,6 @@ const SignIn = (props) => {
           }
         })
         .finally(() => setLoading(false));
-
-      if (props.close) {
-        props.close();
-      }
     }
   };
   // ------------------------- END-LOGIN ---------------------------------------//
@@ -165,83 +165,80 @@ const SignIn = (props) => {
         </Modal.Body>
       </Modal>
     );
-  } else {
-    return (
-      <>
-        <Modal
-          className="modal"
-          backdrop="static"
-          keyboard={false}
-          dialogClassName="col-8"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-          show={props.show}
-        >
-          <Modal.Body className="modal-signin p-5">
-            <div>
-              <h3 className="text-center mb-4">Sign In</h3>
-              {/* Form Email */}
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Email"
-                  autoComplete="off"
-                  onChange={(e) => setField("email", e.target.value.trim())}
-                  required
-                  isInvalid={!!errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              {/* Form Password */}
-              <Form.Group className="mb-2">
-                <Form.Label>Password</Form.Label>
-                <InputGroup>
-                  <Form.Control
-                    id="inlineFormInputGroup"
-                    type={passwordShown ? "text" : "password"}
-                    autoComplete="off"
-                    onChange={(e) =>
-                      setField("password", e.target.value.trim())
-                    }
-                    placeholder="Password"
-                    required
-                    isInvalid={!!errors.password}
-                  />
-                  <InputGroup.Text>{toogleChange()}</InputGroup.Text>
-
-                  <Form.Control.Feedback type="invalid">
-                    {errors.password}
-                  </Form.Control.Feedback>
-                </InputGroup>
-              </Form.Group>
-
-              <div className="divButton mt-4 d-flex justify-content-between align-items-center">
-                <Button
-                  className="me-2 col btCancel"
-                  variant="secondary"
-                  onClick={props.close}
-                >
-                  Cancel
-                </Button>
-
-                <Button
-                  className="col btSignIn"
-                  variant="success"
-                  onClick={handleSignIn}
-                >
-                  SignIn
-                </Button>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-      </>
-    );
   }
+  return (
+    <>
+      <Modal
+        className="modal"
+        backdrop="static"
+        keyboard={false}
+        dialogClassName="col-8"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={props.show}
+      >
+        <Modal.Body className="modal-signin p-5">
+          <div>
+            <h3 className="text-center mb-4">Sign In</h3>
+            {/* Form Email */}
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Email"
+                autoComplete="off"
+                onChange={(e) => setField("email", e.target.value.trim())}
+                required
+                isInvalid={!!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            {/* Form Password */}
+            <Form.Group className="mb-2">
+              <Form.Label>Password</Form.Label>
+              <InputGroup>
+                <Form.Control
+                  id="inlineFormInputGroup"
+                  type={passwordShown ? "text" : "password"}
+                  autoComplete="off"
+                  onChange={(e) => setField("password", e.target.value.trim())}
+                  placeholder="Password"
+                  required
+                  isInvalid={!!errors.password}
+                />
+                <InputGroup.Text>{toogleChange()}</InputGroup.Text>
+
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+
+            <div className="divButton mt-4 d-flex justify-content-between align-items-center">
+              <Button
+                className="me-2 col btCancel"
+                variant="secondary"
+                onClick={props.close}
+              >
+                Cancel
+              </Button>
+
+              <Button
+                className="col btSignIn"
+                variant="success"
+                onClick={handleSignIn}
+              >
+                SignIn
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
 };
 
 export default SignIn;
