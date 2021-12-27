@@ -1,7 +1,9 @@
 .groupProductContainer{
     width: 100vw;
     /* background-color: red; */
-    height: 100vh;
+    height: auto;
+    padding-bottom: 150px;
+
 }
 
 .groupContent{

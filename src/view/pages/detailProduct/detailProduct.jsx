@@ -288,7 +288,7 @@ const DetailProduct = () => {
                       return (
                         <div
                           className="rounded-pill statusAvaliables text-center"
-                          style={{ backgroundColor: "red" }}
+                          style={{backgroundColor:"red", color:"white",fontWeight:"500"}}
                         >
                           {el.Status}
                         </div>
@@ -297,9 +297,7 @@ const DetailProduct = () => {
                       return (
                         <div
                           className="rounded-pill statusAvaliables text-center"
-                          style={{
-                            backgroundColor: "rgba(153, 255, 158, 0.685)",
-                          }}
+                          style={{backgroundColor:"rgba(153, 255, 158, 0.685)", fontWeight:"500"}}
                         >
                           {el.Status}
                         </div>
