@@ -135,7 +135,7 @@ const Order =() =>{
                     <Col>
                         <Col className="isiDetail" >{groupProductID.Limit}</Col>
                         <Col className="isiDetail" >{Rupiah.format(groupProductID.Price)}</Col>
-                        <Col className="isiDetail" > {Rupiah.format(groupProductID.Price)} / {groupProductID.Limit}</Col>
+                        <Col className="isiDetail" > {Rupiah.format(hargaGroup)} </Col>
                         <Col className="isiDetail" >{Rupiah.format(groupProductID.AdminFee)}</Col>
                         <Col className="isiDetail" ><h6>{Rupiah.format(hargaGroup+(groupProductID.AdminFee))}</h6></Col>
                     </Col>
@@ -149,7 +149,7 @@ const Order =() =>{
                   <Form.Label>Phone Number</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Phone Number"
+                    placeholder="ex: 08XXXXXXXXX"
                     onChange={(e) => setField("phone", e.target.value.trim())}
                     required
                     isInvalid={!!errors.phone}
@@ -159,11 +159,7 @@ const Order =() =>{
                   <Form.Control.Feedback type="invalid">
                     {errors.phone}
                   </Form.Control.Feedback>
-                  <Form.Text className="text-muted">
-                    ex : 08123456789
-                    <br />
-                    
-                  </Form.Text>
+                  
                 </Form.Group>
             
                     </Col>

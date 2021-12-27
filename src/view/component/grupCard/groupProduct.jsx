@@ -138,11 +138,11 @@ const GroupProduct =() =>{
                             if(el.Status === "Full"){
                                 // console.log(el.Status, "aaaaaaaaa")
                                 return (
-                                    <div className="rounded-pill statusAvaliable" style={{backgroundColor:"red"}}>{el.Status}</div>
+                                    <div className="rounded-pill statusAvaliable" style={{backgroundColor:"red", color:"white",fontWeight:"500"}}>{el.Status}</div>
                                 )
                             }else if(el.Status === "Available"){
                                 return(
-                                    <div className="rounded-pill statusAvaliable" style={{backgroundColor:"rgba(153, 255, 158, 0.685)"}}>{el.Status}</div>
+                                    <div className="rounded-pill statusAvaliable" style={{backgroundColor:"rgba(153, 255, 158, 0.685)", fontWeight:"500"}}>{el.Status}</div>
                                 )
                             }
                         }
@@ -170,6 +170,8 @@ const GroupProduct =() =>{
                             </Col>
                         </Row>
                         <h5 style={{textAlign:"center", paddingTop:"20px"}}>{el.NameGroupProduct}</h5>
+                        <p style={{textAlign:"center"}}>Limit : {el.Limit} User</p>
+
                         <hr style={{width:"200px" , margin:"0 auto", marginBottom:"10px"}}/>
                                     {order.map((el2,l) =>{
                                         return (
