@@ -2,8 +2,10 @@
   background: rgba(236, 248, 243, 0.445);
   width: 80vw;
   margin: 0 auto;
-  height: auto;
+  min-height: calc(100vh - 330px);
   padding-top: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .BaseContainer .detail {
@@ -33,6 +35,8 @@
   width: 70vw;
   margin: 0 auto;
   margin-bottom: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   border-bottom: 1px solid black;
 }
 
