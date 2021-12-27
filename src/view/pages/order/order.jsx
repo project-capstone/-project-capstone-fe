@@ -76,10 +76,6 @@ const Order =() =>{
             swal({
               title: "Success Payment",
                 text: `
-                    <Row>
-                    <Col> aaa</Col>
-                    <Col> aaa</Col>
-                    </Row>
                     Price          : ${Rupiah.format(data.data.Data.Amount)} 
                     Payment Method : ${data.data.Data.EwalletType}
                     Invoice Number : ${data.data.Data.ExternalId} 
