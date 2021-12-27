@@ -34,7 +34,7 @@ const DetailProduct = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  console.log(id, "aa");
+  // console.log(id, "aa");
 
   const params = useParams();
   const navigate = useNavigate();
@@ -96,7 +96,7 @@ const DetailProduct = () => {
   };
 
   const delGroup = (idx) => {
-    console.log(idx);
+    // console.log(idx);
 
     setLoading(true);
 
@@ -132,10 +132,10 @@ const DetailProduct = () => {
   useEffect(() => {
     dispatch(allStore.fetchGroupProduct(id));
   }, [dispatch, id]);
-  console.log(groupProduct, "group");
+  // console.log(groupProduct, "group");
 
   const filterGroup = groupProduct.filter((item) => item.ProductsID === +id);
-  console.log(filterGroup, "filter");
+  // console.log(filterGroup, "filter");
   filterGroup.sort(function (a, b) {
     return parseFloat(b.ID) - parseFloat(a.ID);
   });

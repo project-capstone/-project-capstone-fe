@@ -22,10 +22,14 @@
 .modal .modal-register .btCancel {
   border: none;
 }
-.spiner{
+.spiner {
   width: 35px;
   margin: 0 auto;
 }
-.toSignIn{
+.toSignIn {
   cursor: pointer;
+}
+
+sup {
+  color: red;
 }
