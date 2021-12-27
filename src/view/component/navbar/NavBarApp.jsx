@@ -2,7 +2,6 @@ import "./NavBarApp.css";
 import { NavDropdown, Navbar, Container, Nav } from "react-bootstrap";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../../store/actions";
 import SignIn from "../signin/signin";
@@ -12,16 +11,6 @@ import logo from "../../../image/logo.png";
 const NavBarApp = () => {
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const {ID} = useParams()
-  const dispatch = useDispatch()
-
-  const user = useSelector(({user}) => user)
-
-  useEffect(() =>{
-    dispatch(allStore.fetchUser(ID))
-},[dispatch])
-// console.log(user.ID, "user")
-
 
   const { ID } = useParams();
   const dispatch = useDispatch();
@@ -35,17 +24,12 @@ const NavBarApp = () => {
 
   const navigate = useNavigate();
   const logout = () => {
-    localStorage.clear();
     navigate("/");
-    window.location.reload()
+    localStorage.clear();
   };
   const toUser = () => {
     navigate(`/myorder`);
   };
-
-  const toUser = () =>{
-    navigate(`/myorder`)
-  }
 
   const navbaractionpage = () => {
     if (
@@ -66,6 +50,9 @@ const NavBarApp = () => {
                   fill="#0c6632"
                   class="bi bi-person-circle"
                   viewBox="0 -2 15 24"
+                  style={{
+                    marginRight: 5,
+                  }}
                 >
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                   <path
@@ -73,17 +60,22 @@ const NavBarApp = () => {
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
                   />
                 </svg>
-                <p style={{ color: "#0c6632", display: "contents" }}>
+                <p
+                  style={{
+                    color: "#0c6632",
+                    display: "contents",
+                    marginLeft: 3,
+                    paddingLeft: 3,
+                  }}
+                >
                   {localStorage.getItem("name")}
                 </p>
               </div>
             }
             id="collasible-nav-dropdown"
           >
-
             {/* History User */}
             <NavDropdown.Item
-
               onClick={() => {
                 toUser(ID);
               }}
@@ -123,6 +115,9 @@ const NavBarApp = () => {
                   fill="#0c6632"
                   class="bi bi-person-circle"
                   viewBox="0 -2 15 24"
+                  style={{
+                    marginRight: 5,
+                  }}
                 >
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                   <path
@@ -130,7 +125,14 @@ const NavBarApp = () => {
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
                   />
                 </svg>
-                <p style={{ color: "#0c6632", display: "contents" }}>
+                <p
+                  style={{
+                    color: "#0c6632",
+                    display: "contents",
+                    marginLeft: 3,
+                    paddingLeft: 3,
+                  }}
+                >
                   {localStorage.getItem("name")}
                 </p>
               </div>
@@ -221,7 +223,7 @@ const NavBarApp = () => {
       <Navbar collapseOnSelect expand="lg" variant="light" className="colorNav">
         <Container>
           <Navbar.Brand href="/" className="title-icon">
-            <img src={logo} alt="logo" width="200px"/>
+            <img src={logo} alt="logo" width="200px" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav d-flex">
