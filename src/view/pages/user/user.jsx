@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Col, Row, Spinner, Table } from "react-bootstrap"
+import { Spinner, Table } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -22,7 +22,7 @@ const User = () =>{
     useEffect(() =>{
         dispatch(allStore.fetchUserOrder())
     },[dispatch, ])
-    console.log(userOrder, "order")
+    // console.log(userOrder, "order")
     
     userOrder.sort(function(a,b){
       return parseFloat(b.OrderID) - parseFloat(a.OrderID)

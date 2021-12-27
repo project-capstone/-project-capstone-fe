@@ -7,7 +7,7 @@ import {
   Button,
   InputGroup,
   Form,
-  FloatingLabel,
+  Image,
   Spinner,
   Row,
   Col,
@@ -86,6 +86,9 @@ const AddProduct = () => {
     if (!photo || photo === "") {
       newErrors.photo = "cannot be blank!";
       setSelectedFile(undefined);
+    } else if (photo.size > 1e6) {
+      newErrors.photo = "Photo size cannot be more than 1 MB!";
+      setSelectedFile(undefined);
     }
 
     return newErrors;
@@ -93,10 +96,10 @@ const AddProduct = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
+
+    // Errors Check
     const newErrors = findFormErrors();
-    // Conditional logic:
     if (Object.keys(newErrors).length > 0) {
-      // We got errors!
       setErrors(newErrors);
     } else {
       setLoading(true);
@@ -177,77 +180,75 @@ const AddProduct = () => {
           </div>
           <div className="newProduct mt-5">
             {/* Product Name */}
-            <Row>
-              <Col md={12}>
-                <FloatingLabel
-                  controlId="floatingProductName"
-                  label="Product Name"
-                >
-                  <Form.Control
-                    type="text"
-                    placeholder="Product Name"
-                    onChange={(e) =>
-                      setField("name_product", e.target.value.trim())
-                    }
-                    required
-                    isInvalid={!!errors.name_product}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.name_product}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
-              </Col>
+            <Row className="mb-3">
+              <Form.Group as={Col} md="12">
+                <Form.Label>
+                  Product Name<sup>*</sup>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Product Name"
+                  onChange={(e) =>
+                    setField("name_product", e.target.value.trim())
+                  }
+                  required
+                  isInvalid={!!errors.name_product}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.name_product}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Row>
 
             {/* Detail Product */}
-            <Row>
+            <Row className="mb-3">
               <div className="col-12">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Detail Product"
-                  className="mb-3 mt-3"
-                >
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Detail Product"
-                    style={{ height: "150px" }}
-                    onChange={(e) =>
-                      setField("detail_product", e.target.value.trim())
-                    }
-                    required
-                    isInvalid={!!errors.detail_product}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.detail_product}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
+                <Form.Label>
+                  Detail Product<sup>*</sup>
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  placeholder="Detail Product"
+                  style={{ height: "150px" }}
+                  onChange={(e) =>
+                    setField("detail_product", e.target.value.trim())
+                  }
+                  required
+                  isInvalid={!!errors.detail_product}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.detail_product}
+                </Form.Control.Feedback>
               </div>
             </Row>
 
-            <Row>
+            <Row className="mb-3">
               {/* Limit */}
               <div className="col-12">
-                <FloatingLabel controlId="floatingLimit" label="Capacity">
-                  <Form.Control
-                    type="number"
-                    placeholder="Capacity"
-                    onChange={(e) => setField("limit", e.target.value.trim())}
-                    required
-                    isInvalid={!!errors.limit}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.limit}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
+                <Form.Label>
+                  Capacity Product<sup>*</sup>
+                </Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="Capacity"
+                  onChange={(e) => setField("limit", e.target.value.trim())}
+                  required
+                  isInvalid={!!errors.limit}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.limit}
+                </Form.Control.Feedback>
               </div>
             </Row>
 
-            <Row className="d-flex">
+            <Row className="mb-3">
               {/* Price */}
               <Col md={12}>
-                <InputGroup hasValidation className="mb-3 mt-3">
+                <Form.Label>
+                  Price<sup>*</sup>
+                </Form.Label>
+                <InputGroup hasValidation>
                   <InputGroup.Text id="inputGroupPrepend">Rp. </InputGroup.Text>
-                  {/* <FloatingLabel controlId="floatingLimit" label="Price"> */}
                   <Form.Control
                     type="number"
                     placeholder="Price"
@@ -258,28 +259,31 @@ const AddProduct = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.price}
                   </Form.Control.Feedback>
-                  {/* </FloatingLabel> */}
                 </InputGroup>
               </Col>
             </Row>
 
             {/* Upload File */}
             <Row>
-              <div className="d-flex justify-content-center align-items-center">
+              <div className="preview d-flex justify-content-center align-items-center">
                 {selectedFile && (
-                  <img
+                  <Image
+                    rounded
                     src={preview}
                     alt="preview product"
                     style={{
-                      width: "auto",
+                      width: 500,
                       height: 300,
+                      objectFit: "cover",
                     }}
                   />
                 )}
               </div>
 
               <Form.Group controlId="photo " className="mb-3">
-                <Form.Label>Product Picture</Form.Label>
+                <Form.Label>
+                  Product Picture<sup>*</sup>
+                </Form.Label>
                 <Form.Control
                   type="file"
                   placeholder=""
@@ -291,11 +295,20 @@ const AddProduct = () => {
                   required
                   isInvalid={!!errors.photo}
                 />
+
                 <Form.Control.Feedback type="invalid">
                   {errors.photo}
                 </Form.Control.Feedback>
+                <h7>file type: jpg/jpeg/png and max size: 1 MB</h7>
               </Form.Group>
             </Row>
+
+            <Row className="d-flex mb-3">
+              <h6>
+                <sup>* Required</sup>
+              </h6>
+            </Row>
+
             <Row className="d-flex align-items-center justify-content-center">
               <Button
                 onClick={handleAdd}

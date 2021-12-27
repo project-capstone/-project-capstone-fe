@@ -8,9 +8,7 @@ import {
   Container,
   Image,
   Card,
-  Tooltip,
   Modal,
-  OverlayTrigger,
   Spinner,
   Row,
   Col,
@@ -27,7 +25,7 @@ const DetailGroupProduct = () => {
   const [loading, setLoading] = useState(false);
 
   const [product, setProduct] = useState({});
-  const [order, setOrder] = useState({});
+  // const [order, setOrder] = useState({});
 
   const params = useParams();
 
@@ -36,9 +34,9 @@ const DetailGroupProduct = () => {
     navigate(`/editproducts/${id}`);
   };
 
-  const goToHome = () => {
-    navigate(`/`);
-  };
+  // const goToHome = () => {
+  //   navigate(`/`);
+  // };
 
   const goToDetailGroup = () => {
     navigate(`/groupproducts/${params.id}`);
@@ -65,7 +63,7 @@ const DetailGroupProduct = () => {
   };
 
   const delOrder = (idx) => {
-    console.log(idx);
+    // console.log(idx);
 
     setLoading(true);
 
@@ -146,7 +144,7 @@ const DetailGroupProduct = () => {
   const updateCred = (idx) => {
     // e.preventDefault();
 
-    console.log(idx);
+    // console.log(idx);
 
     const newErrors = findFormErrors();
     // Conditional logic:
@@ -156,12 +154,13 @@ const DetailGroupProduct = () => {
     } else {
       setLoading(true);
 
-      const detail = "Email:" + email + "Password:" + password;
+      // const detail = "Email:" + email + "Password:" + password;
       const objData = {
-        detail,
+        email,
+        password
       };
 
-      console.log(objData);
+      // console.log(objData);
 
       axios
         .put("https://barengin.site/jwt/orders/update/" + idx, objData, config)
@@ -202,7 +201,7 @@ const DetailGroupProduct = () => {
         .then(({ data }) => {
           setProduct(data.Data);
           // setOrder(product.GetOrder);
-          console.log(product.GetOrder);
+          // console.log(product.GetOrder);
         })
         .catch((err) => {
           console.log(err.data.Message);

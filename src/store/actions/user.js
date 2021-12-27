@@ -10,7 +10,7 @@ export const fetchUser = () =>{
         dispatch(allStore.setLoading(true))
         axios.get(`https://barengin.site/jwt/users/`+ localStorage.getItem("ID"), config)
         .then((data) =>{
-            console.log("masuk",data.data.Data);
+            // console.log("masuk",data.data.Data);
             dispatch(setUser(data.data.Data))
         }).catch((err) =>{
             console.log(err);

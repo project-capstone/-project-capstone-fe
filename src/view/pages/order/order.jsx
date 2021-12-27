@@ -52,7 +52,11 @@ const Order =() =>{
       navigate(`/myorder`)
     }
 
-    
+    const Rupiah = Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+
     const handleOrder = (event) =>{
         event.preventDefault();
         const newErrors = findFormErrors();
@@ -72,7 +76,11 @@ const Order =() =>{
             swal({
               title: "Success Payment",
                 text: `
-                    Price           : ${data.data.Data.Amount} 
+                    <Row>
+                    <Col> aaa</Col>
+                    <Col> aaa</Col>
+                    </Row>
+                    Price          : ${Rupiah.format(data.data.Data.Amount)} 
                     Payment Method : ${data.data.Data.EwalletType}
                     Invoice Number : ${data.data.Data.ExternalId} 
                     `,
@@ -95,10 +103,7 @@ const Order =() =>{
         }
     }    
         
-      const Rupiah = Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-      });
+    
       const hargaGroup = (groupProductID.Price) / (groupProductID.Limit)
 
     if(loading){
@@ -135,7 +140,7 @@ const Order =() =>{
                         <Col className="isiDetail" >{groupProductID.Limit}</Col>
                         <Col className="isiDetail" >{Rupiah.format(groupProductID.Price)}</Col>
                         <Col className="isiDetail" > {Rupiah.format(groupProductID.Price)} / {groupProductID.Limit}</Col>
-                        <Col className="isiDetail" >{groupProductID.AdminFee}</Col>
+                        <Col className="isiDetail" >{Rupiah.format(groupProductID.AdminFee)}</Col>
                         <Col className="isiDetail" ><h6>{Rupiah.format(hargaGroup+(groupProductID.AdminFee))}</h6></Col>
                     </Col>
                   </Row>
