@@ -23,20 +23,35 @@ import "./detailProduct.css";
 //detailproduct for admin
 const DetailProduct = () => {
   const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState({});
+  const groupProduct = useSelector(({ groupProduct }) => groupProduct);
+  const dispatch = useDispatch();
 
   const [showDel, setShowDel] = useState(false);
   const handleCloseDel = () => setShowDel(false);
   const handleShowDel = () => setShowDel(true);
 
-  const [product, setProduct] = useState({});
+  const [id_Group, setIdGroup] = useState(null);
 
-  const groupProduct = useSelector(({ groupProduct }) => groupProduct);
-  const dispatch = useDispatch();
+  const [showDelGroup, setShowDelGroup] = useState(false);
+  const handleCloseDelGroup = () => {
+    setIdGroup(null);
+    setShowDelGroup(false);
+  };
+  const handleShowDelGroup = (id_Group) => {
+    setIdGroup(id_Group);
+    setShowDelGroup(true);
+  };
 
   const { id } = useParams();
-  console.log(id, "aa");
-
   const params = useParams();
+
+  const Rupiah = Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+
+  // ------------------  NAVIGATE  ------------------------------- //
   const navigate = useNavigate();
   const goToEditProduct = (id) => {
     navigate(`/editproducts/${id}`);
@@ -49,11 +64,7 @@ const DetailProduct = () => {
   const goToHome = () => {
     navigate(`/`);
   };
-
-  const Rupiah = Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-  });
+  // ----------------------------------------------------------------- //
 
   const config = {
     headers: {
@@ -61,6 +72,7 @@ const DetailProduct = () => {
     },
   };
 
+  // ---------------------- GET GROUP PRODUCT --------------------------//
   useEffect(() => {
     if (localStorage.getItem("role") === "admin") {
       setLoading(true);
@@ -80,70 +92,10 @@ const DetailProduct = () => {
     }
     // eslint-disable-next-line
   }, []);
+  // --------------------------------------------------------------------//
 
-  // ---------------  START - Delete Group  --------------------//
-  const [id_Group, setIdGroup] = useState(null);
+  // -------------------------- DELETE PRODUCT --------------------------//
 
-  const [showDelGroup, setShowDelGroup] = useState(false);
-  const handleCloseDelGroup = () => {
-    setIdGroup(null);
-    setShowDelGroup(false);
-  };
-
-  const handleShowDelGroup = (id_Group) => {
-    setIdGroup(id_Group);
-    setShowDelGroup(true);
-  };
-
-  const delGroup = (idx) => {
-    console.log(idx);
-
-    setLoading(true);
-
-    axios
-      .delete(`https://barengin.site/jwt/products/group/delete/` + idx, config)
-      .then((response) => {
-        swal({
-          text: response.data.Message,
-          icon: "success",
-        });
-
-        goToHome();
-        handleCloseDel();
-      })
-      .catch((err) => {
-        if (err) {
-          swal({
-            text: err.response.data.Message,
-            icon: "error",
-          });
-          handleCloseDel();
-        } else {
-          swal.stopLoading();
-          swal.close();
-          handleCloseDel();
-        }
-      })
-      .finally(() => setLoading(false));
-  };
-  // ---------------  END - Delete Order  --------------------//
-
-  // GET GROUP PRODUCT //
-  useEffect(() => {
-    dispatch(allStore.fetchGroupProduct(id));
-  }, [dispatch, id]);
-  console.log(groupProduct, "group");
-
-  const filterGroup = groupProduct.filter((item) => item.ProductsID === +id);
-  console.log(filterGroup, "filter");
-  filterGroup.sort(function (a, b) {
-    return parseFloat(b.ID) - parseFloat(a.ID);
-  });
-
-  const order = filterGroup.filter((item) => item.GetOrder);
-  // GET GROUP PRODUCT //
-
-  // delete Product
   const handleDelProduct = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -174,6 +126,57 @@ const DetailProduct = () => {
       })
       .finally(() => setLoading(false));
   };
+  // -------------------------------------------------------------------//
+
+  // ---------------------- GET GROUP PRODUCT --------------------------//
+  useEffect(() => {
+    dispatch(allStore.fetchGroupProduct(id));
+  }, [dispatch, id]);
+  console.log(groupProduct, "group");
+
+  const filterGroup = groupProduct.filter((item) => item.ProductsID === +id);
+  console.log(filterGroup, "filter");
+  filterGroup.sort(function (a, b) {
+    return parseFloat(b.ID) - parseFloat(a.ID);
+  });
+
+  const order = filterGroup.filter((item) => item.GetOrder);
+  // --------------------------------------------------------------------//
+
+  // ----------------------  DELETE GROUP  -----------------------------//
+
+  const delGroup = (idx) => {
+    console.log(idx);
+
+    setLoading(true);
+
+    axios
+      .delete(`https://barengin.site/jwt/products/group/delete/` + idx, config)
+      .then((response) => {
+        swal({
+          text: response.data.Message,
+          icon: "success",
+        });
+
+        goToHome();
+        handleCloseDelGroup();
+      })
+      .catch((err) => {
+        if (err) {
+          swal({
+            text: err.response.data.Message,
+            icon: "error",
+          });
+          handleCloseDelGroup();
+        } else {
+          swal.stopLoading();
+          swal.close();
+          handleCloseDelGroup();
+        }
+      })
+      .finally(() => setLoading(false));
+  };
+  // -------------------------------------------------------------------//
 
   if (loading) {
     return (
@@ -279,15 +282,14 @@ const DetailProduct = () => {
               <h3 style={{ textAlign: "center", color: "#0c6632" }}>
                 Subscribe Group
               </h3>
-              
               <div className="contentDetails d-flex flex-wrap ">
                 {filterGroup.map((el, i) => {
                   const status = () => {
                     if (el.Status === "Full") {
-                      // console.log(el.Status, "aaaaaaaaa");
+                      console.log(el.Status, "aaaaaaaaa");
                       return (
                         <div
-                          className="rounded-pill statusAvaliables text-center"
+                          className="rounded statusAvaliables text-center"
                           style={{ backgroundColor: "red" }}
                         >
                           {el.Status}
@@ -296,9 +298,11 @@ const DetailProduct = () => {
                     } else if (el.Status === "Available") {
                       return (
                         <div
-                          className="rounded-pill statusAvaliables text-center"
+                          className="rounded statusAvaliables text-center"
                           style={{
-                            backgroundColor: "rgba(153, 255, 158, 0.685)",
+                            // backgroundColor: "rgba(153, 255, 158, 0.685)",
+                            backgroundColor: "limegreen",
+                            color: "white",
                           }}
                         >
                           {el.Status}
@@ -306,7 +310,7 @@ const DetailProduct = () => {
                       );
                     }
                   };
-                
+
                   return (
                     <div className="CardGroupDetail mx-1 my-2" key={i}>
                       <Row>
@@ -347,10 +351,11 @@ const DetailProduct = () => {
                         );
                       })}
 
-                      <div className="ButtonOrder mt-1">
+                      {/* <div className="ButtonOrder mt-1"> */}
+                      <Row className="d-flex justify-content-center">
                         <Button
                           variant="success"
-                          className="buttonOrder col-12 mt-1 mb-2"
+                          className="buttonOrder col-6 mb-2 me-2"
                           onClick={() => goToDetailGroupProduct(el.ID)}
                         >
                           INFO
@@ -358,50 +363,13 @@ const DetailProduct = () => {
 
                         <Button
                           variant="danger"
-                          className="buttonOrder col-12 mb-2"
+                          className="buttonOrder col-6 mb-2"
                           onClick={() => handleShowDelGroup(el.ID)}
                         >
                           Delete
                         </Button>
-                      </div>
-
-                      {/* Modal Delete Group Product */}
-                      <Modal
-                        show={showDelGroup}
-                        onHide={handleCloseDelGroup}
-                        backdrop="static"
-                        keyboard={false}
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                      >
-                        <Modal.Body className="p-5 d-flex justify-content-center align-items-center">
-                          <div>
-                            <p>
-                              {" "}
-                              Are you really.. really sure to delete this group
-                              product ?{" "}
-                            </p>
-
-                            <div className="divButton mt-5 d-flex justify-content-center align-items-center">
-                              <Button
-                                className="me-2 col-3 btCancel"
-                                variant="secondary"
-                                onClick={handleCloseDelGroup}
-                              >
-                                Cancel
-                              </Button>
-
-                              <Button
-                                className="col-3 btEdit"
-                                variant="danger"
-                                onClick={() => delGroup(id_Group)}
-                              >
-                                Delete
-                              </Button>
-                            </div>
-                          </div>
-                        </Modal.Body>
-                      </Modal>
+                      </Row>
+                      {/* </div> */}
                     </div>
                   );
                 })}
@@ -438,6 +406,43 @@ const DetailProduct = () => {
                   className="col-3 btEdit"
                   variant="danger"
                   onClick={handleDelProduct}
+                >
+                  Delete
+                </Button>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+
+        {/* Modal Delete Group Product */}
+        <Modal
+          show={showDelGroup}
+          onHide={handleCloseDelGroup}
+          backdrop="static"
+          keyboard={false}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Body className="p-5 d-flex justify-content-center align-items-center">
+            <div>
+              <p>
+                {" "}
+                Are you really.. really sure to delete this group product ?{" "}
+              </p>
+
+              <div className="divButton mt-5 d-flex justify-content-center align-items-center">
+                <Button
+                  className="me-2 col-3 btCancel"
+                  variant="secondary"
+                  onClick={handleCloseDelGroup}
+                >
+                  Cancel
+                </Button>
+
+                <Button
+                  className="col-3 btEdit"
+                  variant="danger"
+                  onClick={() => delGroup(id_Group)}
                 >
                   Delete
                 </Button>
