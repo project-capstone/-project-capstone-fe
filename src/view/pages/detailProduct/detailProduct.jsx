@@ -32,7 +32,6 @@ const DetailProduct = () => {
   const handleShowDel = () => setShowDel(true);
 
   const [id_Group, setIdGroup] = useState(null);
-
   const [showDelGroup, setShowDelGroup] = useState(false);
   const handleCloseDelGroup = () => {
     setIdGroup(null);
@@ -95,7 +94,6 @@ const DetailProduct = () => {
   // --------------------------------------------------------------------//
 
   // -------------------------- DELETE PRODUCT --------------------------//
-
   const handleDelProduct = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -132,10 +130,10 @@ const DetailProduct = () => {
   useEffect(() => {
     dispatch(allStore.fetchGroupProduct(id));
   }, [dispatch, id]);
-  console.log(groupProduct, "group");
+  // console.log(groupProduct, "group");
 
   const filterGroup = groupProduct.filter((item) => item.ProductsID === +id);
-  console.log(filterGroup, "filter");
+  // console.log(filterGroup, "filter");
   filterGroup.sort(function (a, b) {
     return parseFloat(b.ID) - parseFloat(a.ID);
   });

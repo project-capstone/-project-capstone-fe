@@ -20,6 +20,7 @@ const CardProduct = () => {
   const toNavigate = (ID) => {
     if (localStorage.getItem("role") === "admin") {
       navigate(`/products/${ID}`);
+      // console.log(ID, "po")
     } else {
       navigate(`/group/${ID}`);
       console.log(ID, "id");
@@ -45,7 +46,7 @@ const CardProduct = () => {
     }
     
         return (
-            <div>
+            <div className="cardProduct">
                 <div className="product" id="product"><h3 style={{color:"#0c6632"}}>Product</h3> <br/></div>
                 <div className="containerCard  d-flex flex-wrap justify-content-beetwen">   
                    {listProduct.map((el,i) => (

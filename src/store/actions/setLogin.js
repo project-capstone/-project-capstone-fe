@@ -25,6 +25,7 @@ export const postLogin = (payload) => {
           localStorage.setItem("token", response.data.Data.Token);
           localStorage.setItem("user", response.data.Data.ID);
           localStorage.setItem("role", response.data.Data.Role);
+          localStorage.setItem("ID", response.data.Data.ID);
         }
       })
       .catch((err) => {

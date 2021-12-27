@@ -2,7 +2,9 @@ import axios from 'axios'
 import swal from 'sweetalert';
 import allStore from './index'
 
+
 export const postOrder = (payload, ID) =>{
+
     const token = localStorage.getItem("token");
         const config = {
             headers: { Authorization: `Bearer ${token}` },
@@ -17,7 +19,6 @@ export const postOrder = (payload, ID) =>{
                 text: "Success Payment",
                 icon: "success",
               });
-            console.log(data)
         }).catch((err) =>{
             console.log(err.response.data.Message)
             swal({

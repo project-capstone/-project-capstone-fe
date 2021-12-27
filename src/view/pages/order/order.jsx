@@ -1,7 +1,9 @@
+import axios from "axios"
 import { useEffect, useState } from "react"
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import swal from "sweetalert"
 import allStore from "../../../store/actions"
 import "./order.css"
 const Order =() =>{
@@ -12,7 +14,9 @@ const Order =() =>{
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState({});
     const {phone} = form;
-    const loading = useSelector (({loading}) =>loading)
+    // const loading = useSelector (({loading}) =>loading)
+    const [loading, setLoading] = useState(false);
+
 
 
     
@@ -21,7 +25,7 @@ const Order =() =>{
         },[dispatch, ID])
 
     
-        const setField = (field, value) => {
+    const setField = (field, value) => {
           setForm({
            form,
             [field]: value,
@@ -34,7 +38,7 @@ const Order =() =>{
             });
         };
       
-        const findFormErrors = () => {
+    const findFormErrors = () => {
           const regexPhone =  /^[0-9]+$/;
           const newErrors = {};
           if (!phone || phone === "") newErrors.phone = "cannot be blank!";
@@ -42,26 +46,64 @@ const Order =() =>{
           else if (regexPhone.test(phone) === false) newErrors.phone = "Invalid phone number!";
           return newErrors
           }
+        
+    const navigate = useNavigate();
+    const toUser = () =>{
+      navigate(`/myorder`)
+    }
 
-    
+    const Rupiah = Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+
     const handleOrder = (event) =>{
         event.preventDefault();
         const newErrors = findFormErrors();
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         }else{
+          const token = localStorage.getItem("token");
+          const config = {
+            headers: { Authorization: `Bearer ${token}` },
+          };    
+          setLoading(true)
             const body ={
                 phone
             }
-            dispatch(allStore.postOrder(body, ID))
-            console.log("masuk order", body)
+            axios.post(`https://barengin.site/jwt/orders/${ID}`,body, config)
+        .then((data) =>{
+            swal({
+              title: "Success Payment",
+                text: `
+                    <Row>
+                    <Col> aaa</Col>
+                    <Col> aaa</Col>
+                    </Row>
+                    Price          : ${Rupiah.format(data.data.Data.Amount)} 
+                    Payment Method : ${data.data.Data.EwalletType}
+                    Invoice Number : ${data.data.Data.ExternalId} 
+                    `,
+                icon: "success",
+                button: "Check My Order"
+              }).then(function() {
+                toUser();
+            })
+              console.log(data.data.Data)
+              
+
+        }).catch((err) =>{
+            console.log(err.response.data.Message)
+            swal({
+                text: err.response.data.Message,
+                icon: "error",
+              });    
+        })
+        .finally(() => setLoading(false))
         }
     }    
         
-      const Rupiah = Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-      });
+    
       const hargaGroup = (groupProductID.Price) / (groupProductID.Limit)
 
     if(loading){
@@ -98,7 +140,7 @@ const Order =() =>{
                         <Col className="isiDetail" >{groupProductID.Limit}</Col>
                         <Col className="isiDetail" >{Rupiah.format(groupProductID.Price)}</Col>
                         <Col className="isiDetail" > {Rupiah.format(groupProductID.Price)} / {groupProductID.Limit}</Col>
-                        <Col className="isiDetail" >{groupProductID.AdminFee}</Col>
+                        <Col className="isiDetail" >{Rupiah.format(groupProductID.AdminFee)}</Col>
                         <Col className="isiDetail" ><h6>{Rupiah.format(hargaGroup+(groupProductID.AdminFee))}</h6></Col>
                     </Col>
                   </Row>

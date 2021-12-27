@@ -1,11 +1,11 @@
 .groupProductContainer{
     width: 100vw;
     /* background-color: red; */
-    height: auto;
+    height: 100vh;
 }
 
 .groupContent{
-    width: 71vw;
+    width: 74vw;
     height: auto;
     background:rgba(236, 248, 243, 0.445);   
     padding-bottom: 160px;
@@ -20,7 +20,7 @@
 
 .fieldProduct{
     margin-bottom: 40px;
-    width: 71vw;
+    width: 74vw;
 }
 
 .CardGroup{
